@@ -15,4 +15,11 @@ module.exports = {
     NO_USER: 'NO_USER',
     LOGIN_SUCCESS: 'LOGIN_SUCCESS',
     INVALID_PASSWORD: 'INVALID_PASSWORD',
+
+    // 인증, 인가
+    MISSING_SESSION: 'MISSING_SESSION',
+    NOT_FOUND_USER: 'NOT_FOUND_USER',
+
+    // 회원정보조회 성공
+    GET_INFO_SUCCESS: 'GET_INFO_SUCCESS',
 };
