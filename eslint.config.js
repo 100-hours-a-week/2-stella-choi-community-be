@@ -19,6 +19,7 @@ export default [
             'prettier/prettier': ['error'],
             'indent': ['error', 4],
             'no-console': 'off',
+            'camelcase': 'off',
         },
         ignores: [
             'node_modules/',
