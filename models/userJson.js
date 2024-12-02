@@ -12,8 +12,8 @@ function writeData(data) {
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
 }
 
-function addUser(newUser) {
-    const data = readData();
+async function addUser(newUser) {
+    const data = await readData();
     const nextId = data.length > 0 ? data[data.length - 1].id + 1 : 1;
 
     const newDataWithId = { id: nextId, ...newUser };
@@ -22,12 +22,7 @@ function addUser(newUser) {
     console.log('데이터 추가 완료:', newDataWithId);
 }
 
-const createUser = async userData => {
-    console.log(filePath);
-    addUser(userData);
-};
-
 module.exports = {
-    createUser,
+    addUser,
     readData,
 };

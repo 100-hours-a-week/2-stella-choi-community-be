@@ -68,7 +68,7 @@ const postUser = async (req, res) => {
     }
 
     try {
-        await userJson.createUser(req.body);
+        await userJson.addUser(req.body);
         return res
             .status(statusCode.CREATED)
             .send(
