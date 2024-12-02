@@ -1,20 +1,22 @@
-// 인증 미들웨어
-const authenticate = (req, res, next) => {
-    if (!req.session.user) {
-        return res.status(400).json({ error: '인증되지 않았습니다.' });
-    }
-    next();
-};
+const statusCode = require('../constants/statusCode');
+const responseMessage = require('../constants/responseMessage');
+const util = require('../libs/util');
 
 // 인가 미들웨어
-const authorize = (req, res, next) => {
-    if (!req.session.role || req.session.role !== 'admin') {
-        return res.status(400).json({ error: '인가되지 않았습니다.' });
+const authMiddleware = (req, res, next) => {
+    if (!req.session.userId) {
+        return res
+            .status(statusCode.UNAUTHORIZED)
+            .send(
+                util.fail(
+                    statusCode.UNAUTHORIZED,
+                    responseMessage.NOT_AUTHORIZED,
+                ),
+            );
     }
     next();
 };
 
 module.exports = {
-    authenticate,
-    authorize,
+    authMiddleware,
 };

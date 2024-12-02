@@ -57,6 +57,10 @@ module.exports = {
         const noSpaceRegex = /^\S*$/;
         return lengthRegex.test(nickname) && noSpaceRegex.test(nickname);
     },
+    validateEmail: email => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    },
     duplicateNickname: (arr, nickname) =>
         arr.some(item => item.nickname === nickname),
     duplicateEmail: (arr, email) => arr.some(item => item.email === email),
