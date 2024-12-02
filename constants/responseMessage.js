@@ -33,4 +33,7 @@ module.exports = {
 
     // 회원탈퇴
     DELETE_INFO_SUCCESS: 'DELETE_INFO_SUCCESS',
+
+    // 로그아웃
+    LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
 };

@@ -5,5 +5,12 @@
     "password": "$2b$10$FYoTyXu8sAGGz/svgdtF/OHLvJx4O3vS.U9tqp8YcN9QDvhLhM452",
     "nickname": "startup523",
     "profile_image": "/images/userprofile.png"
+  },
+  {
+    "id": 3,
+    "email": "test@startupdke.kr",
+    "password": "$2b$10$AGmKsxtoXEvXR38h54CHre9myVPrufTwbBx4MSxzsbtWQs3nwxGza",
+    "nickname": "startup5",
+    "profile_image": "/images/userprofile.png"
   }
 ]
