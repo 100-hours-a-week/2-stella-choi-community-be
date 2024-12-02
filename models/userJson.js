@@ -40,10 +40,18 @@ async function updateUser(data) {
     writeData(updatedUser);
 }
 
+async function deleteUserBySession(userID) {
+    const lists = await readData();
+    const filteredData = lists.filter(item => item.id !== userID);
+
+    await writeData(filteredData);
+}
+
 module.exports = {
     addUser,
     readData,
     findUser,
     findUserBySession,
     updateUser,
+    deleteUserBySession,
 };
