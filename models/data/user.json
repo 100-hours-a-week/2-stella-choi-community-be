@@ -1,12 +1,5 @@
 [
   {
-    "id": 1,
-    "email": "test@startupcfodke.kr",
-    "password": "$2b$10$xCqkBzhvvC5fcsPkPm3eheg.q99h4jEyx3zi8H43jNOnUGgCODsmi",
-    "nickname": "startupsa",
-    "profile_image": "https://imagef.kr/img4g2.jpg"
-  },
-  {
     "id": 2,
     "email": "test@startuprcfodke.kr",
     "password": "$2b$10$FYoTyXu8sAGGz/svgdtF/OHLvJx4O3vS.U9tqp8YcN9QDvhLhM452",
