@@ -33,9 +33,17 @@ async function findUserBySession(userID) {
     const user = data.find(item => item.id === userID);
     return user || null;
 }
+
+async function updateUser(data) {
+    const lists = await readData();
+    const updatedUser = lists.map(item => (item.id === data.id ? data : item));
+    writeData(updatedUser);
+}
+
 module.exports = {
     addUser,
     readData,
     findUser,
     findUserBySession,
+    updateUser,
 };

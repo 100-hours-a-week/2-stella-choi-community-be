@@ -22,4 +22,8 @@ module.exports = {
 
     // 회원정보조회 성공
     GET_INFO_SUCCESS: 'GET_INFO_SUCCESS',
+
+    // 회원정보수정
+    EDIT_PROFILE_SUCCESS: 'EDIT_PROFILE_SUCCESS',
+    INVALID_NICKNAME: 'INVALID_NICKNAME',
 };
