@@ -27,8 +27,15 @@ async function findUser(email) {
     const user = data.find(item => item.email === email);
     return user || null;
 }
+
+async function findUserBySession(userID) {
+    const data = await readData();
+    const user = data.find(item => item.id === userID);
+    return user || null;
+}
 module.exports = {
     addUser,
     readData,
     findUser,
+    findUserBySession,
 };
