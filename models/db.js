@@ -6,7 +6,7 @@ const pool = mysql.createPool({
     host: 'localhost',
     user: process.env.USERNAME,
     password: process.env.PASSWORD,
-    database: process.env.DATABASE
+    database: process.env.DATABASE,
 });
 
 // pool.query를 Promise로 변환
