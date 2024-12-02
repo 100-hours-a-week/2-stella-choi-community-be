@@ -7,6 +7,7 @@ const patchUser = require('../../controllers/user/patchUser');
 const patchUserPassword = require('../../controllers/user/patchUserPassword');
 const deleteUser = require('../../controllers/user/deleteUser');
 const { authMiddleware } = require('../../middlewares/auth');
+const logoutUser = require('../../controllers/user/logoutUser');
 
 const router = express.Router();
 
@@ -15,6 +16,7 @@ router.get('/', authMiddleware, getUser);
 router.patch('/', authMiddleware, patchUser);
 router.delete('/', authMiddleware, deleteUser);
 router.post('/login', loginUser);
+router.post('/logout', authMiddleware, logoutUser);
 router.patch('/password', authMiddleware, patchUserPassword);
 
 module.exports = router;
