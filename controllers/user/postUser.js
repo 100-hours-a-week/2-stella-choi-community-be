@@ -33,7 +33,11 @@ const postUser = async (req, res) => {
     }
 
     // ACTION: INVALID_FORMAT
-    if (!util.validatePassword(password) || !util.validateNickname(nickname)) {
+    if (
+        !util.validatePassword(password) ||
+        !util.validateNickname(nickname) ||
+        !util.validateEmail(email)
+    ) {
         return res
             .status(statusCode.BAD_REQUEST)
             .send(
