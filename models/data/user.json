@@ -14,5 +14,13 @@
     "password_check": "Test@1234",
     "nickname": "startup52",
     "profile_image": "/images/userprofile.png"
+  },
+  {
+    "id": 3,
+    "email": "test@startupcfodke.kr",
+    "password": "Test@1234",
+    "password_check": "Test@1234",
+    "nickname": "startup521",
+    "profile_image": "/images/userprofile.png"
   }
 ]

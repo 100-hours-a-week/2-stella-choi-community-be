@@ -22,7 +22,13 @@ async function addUser(newUser) {
     console.log('데이터 추가 완료:', newDataWithId);
 }
 
+async function findUser(email) {
+    const data = await readData();
+    const user = data.find(item => item.email === email);
+    return user || null;
+}
 module.exports = {
     addUser,
     readData,
+    findUser,
 };
