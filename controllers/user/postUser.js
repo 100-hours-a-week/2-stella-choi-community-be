@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const { userJson } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
@@ -68,7 +69,16 @@ const postUser = async (req, res) => {
     }
 
     try {
-        await userJson.addUser(req.body);
+        const salt = 10;
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        const userData = {
+            email,
+            password: hashedPassword,
+            nickname,
+            profile_image,
+        };
+        await userJson.addUser(userData);
         return res
             .status(statusCode.CREATED)
             .send(

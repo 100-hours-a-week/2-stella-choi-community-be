@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const { userJson } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
@@ -34,13 +35,17 @@ const loginUser = async (req, res) => {
     try {
         const user = await userJson.findUser(email);
         if (user) {
-            if (user.password !== password) {
+            const isPasswordMatch = await bcrypt.compare(
+                password,
+                user.password,
+            );
+            if (!isPasswordMatch) {
                 return res
                     .status(statusCode.UNAUTHORIZED)
                     .send(
                         util.fail(
                             statusCode.UNAUTHORIZED,
-                            responseMessage.NOT_AUTHORIZED,
+                            responseMessage.INVALID_PASSWORD,
                         ),
                     );
             }

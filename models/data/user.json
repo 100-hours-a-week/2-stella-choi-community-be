@@ -1,25 +1,8 @@
 [
   {
     "id": 1,
-    "email": "test@startupcode.kr",
-    "password": "test1234",
-    "password_check": "test1234",
-    "nickname": "startup",
-    "profile_image": "/images/userprofile.png"
-  },
-  {
-    "id": 2,
-    "email": "test@startupcodke.kr",
-    "password": "Test@1234",
-    "password_check": "Test@1234",
-    "nickname": "startup52",
-    "profile_image": "/images/userprofile.png"
-  },
-  {
-    "id": 3,
     "email": "test@startupcfodke.kr",
-    "password": "Test@1234",
-    "password_check": "Test@1234",
+    "password": "$2b$10$mJ87B6JJCji9b6y.ajIiH.bFs6dwxP5drre2u32KUTH3tJZ4sh5zm",
     "nickname": "startup521",
     "profile_image": "/images/userprofile.png"
   }
