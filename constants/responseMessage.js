@@ -36,4 +36,8 @@ module.exports = {
 
     // 로그아웃
     LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
+
+    // 게시글 조회
+    MISSING_PARAMETER: 'MISSING_PARAMETER',
+    GET_ALL_BOARD_SUCCESS: 'GET_ALL_BOARD_SUCCESS',
 };

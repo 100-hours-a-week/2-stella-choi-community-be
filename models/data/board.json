@@ -1,0 +1,162 @@
+[
+  {
+    "post_id": 1,
+    "title": "제목1",
+    "view_count": 0,
+    "user_id": 1,
+    "content": "여행을 좋아한다.",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 2,
+    "title": "제목2",
+    "view_count": 0,
+    "user_id": 2,
+    "content": "내용2",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 3,
+    "title": "제목3",
+    "view_count": 0,
+    "user_id": 3,
+    "content": "내용3",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 4,
+    "title": "제목4",
+    "view_count": 0,
+    "user_id": 4,
+    "content": "내용4",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 5,
+    "title": "제목5",
+    "view_count": 0,
+    "user_id": 5,
+    "content": "내용5",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 6,
+    "title": "제목6",
+    "view_count": 0,
+    "user_id": 6,
+    "content": "내용6",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 7,
+    "title": "제목7",
+    "view_count": 0,
+    "user_id": 7,
+    "content": "내용7",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 8,
+    "title": "제목8",
+    "view_count": 0,
+    "user_id": 8,
+    "content": "내용8",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 9,
+    "title": "제목9",
+    "view_count": 0,
+    "user_id": 9,
+    "content": "내용9",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 10,
+    "title": "제목10",
+    "view_count": 0,
+    "user_id": 10,
+    "content": "내용10",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 11,
+    "title": "제목11",
+    "view_count": 0,
+    "user_id": 11,
+    "content": "내용11",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 12,
+    "title": "제목12",
+    "view_count": 0,
+    "user_id": 12,
+    "content": "내용12",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 13,
+    "title": "제목13",
+    "view_count": 0,
+    "user_id": 13,
+    "content": "내용13",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 14,
+    "title": "제목14",
+    "view_count": 0,
+    "user_id": 14,
+    "content": "내용14",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 15,
+    "title": "제목15",
+    "view_count": 0,
+    "user_id": 15,
+    "content": "내용15",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 16,
+    "title": "제목16",
+    "view_count": 0,
+    "user_id": 16,
+    "content": "내용16",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 17,
+    "title": "제목17",
+    "view_count": 0,
+    "user_id": 17,
+    "content": "내용17",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 18,
+    "title": "제목18",
+    "view_count": 0,
+    "user_id": 18,
+    "content": "내용18",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 19,
+    "title": "제목19",
+    "view_count": 0,
+    "user_id": 19,
+    "content": "내용19",
+    "posted_time": "2021-02-01 00:00:00"
+  },
+  {
+    "post_id": 20,
+    "title": "제목20",
+    "view_count": 0,
+    "user_id": 20,
+    "content": "내용20",
+    "posted_time": "2021-02-01 00:00:00"
+  }
+]
