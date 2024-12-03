@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const dateFormat = require('../libs/dateFormat');
 
 const userPath = path.join(__dirname, '/data', '/user.json');
 const boardPath = path.join(__dirname, '/data', '/board.json');
@@ -38,9 +39,9 @@ function readLikeByBoardId(boardId) {
     return likes.filter(like => like.board_id === boardId);
 }
 
-// function writeData(data) {
-//     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
-// }
+function writeBoard(data) {
+    fs.writeFileSync(boardPath, JSON.stringify(data, null, 2), 'utf-8');
+}
 
 async function getAllBoard(limit, offset) {
     const boards = await readBoard();
@@ -67,6 +68,27 @@ async function getAllBoard(limit, offset) {
     return result;
 }
 
+async function addBoard(data) {
+    const board = await readBoard();
+    const nextId = board.length > 0 ? board[board.length - 1].post_id + 1 : 1;
+    const newBoard = {
+        post_id: nextId,
+        title: data.title,
+        view_count: 0,
+        user_id: data.user_id,
+        content: data.content,
+        posted_time: dateFormat(new Date(Date.now())),
+        post_image: data.post_image,
+    };
+    await board.push(newBoard);
+    writeBoard(board);
+    console.log('데이터 추가 완료:', newBoard);
+    return {
+        post_id: newBoard.post_id,
+    };
+}
+
 module.exports = {
     getAllBoard,
+    addBoard,
 };

@@ -61,6 +61,9 @@ module.exports = {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     },
+    validateTitle: title => {
+        return title && title.length <= 26;
+    },
     duplicateNickname: (arr, nickname) =>
         arr.some(item => item.nickname === nickname),
     duplicateEmail: (arr, email) => arr.some(item => item.email === email),
