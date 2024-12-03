@@ -2,7 +2,7 @@
   {
     "post_id": 1,
     "title": "제목1",
-    "view_count": 0,
+    "view_count": 1,
     "user_id": 1,
     "content": "여행을 좋아한다.",
     "posted_time": "2021-02-01 00:00:00",
@@ -11,7 +11,7 @@
   {
     "post_id": 2,
     "title": "제목2",
-    "view_count": 0,
+    "view_count": 3,
     "user_id": 2,
     "content": "내용2",
     "posted_time": "2021-02-01 00:00:00",
@@ -177,54 +177,6 @@
     "user_id": 20,
     "content": "내용20",
     "posted_time": "2021-02-01 00:00:00",
-    "post_image": "https://image.kr/img.jpg"
-  },
-  {
-    "post_id": 21,
-    "title": "제목제목~",
-    "view_count": 0,
-    "content": "내용내용",
-    "posted_time": 1733200987650,
-    "post_image": "https://image.kr/img.jpg"
-  },
-  {
-    "post_id": 22,
-    "title": "제목제목~",
-    "view_count": 0,
-    "content": "내용내용",
-    "posted_time": "2024-12-03T04:43:43.477Z",
-    "post_image": "https://image.kr/img.jpg"
-  },
-  {
-    "post_id": 23,
-    "title": "제목제목~",
-    "view_count": 0,
-    "content": "내용내용",
-    "posted_time": "2024-12-03 13:50:01",
-    "post_image": "https://image.kr/img.jpg"
-  },
-  {
-    "post_id": 24,
-    "title": "제목제목~fffffffffffffffffff",
-    "view_count": 0,
-    "content": "내용내용",
-    "posted_time": "2024-12-03 13:55:21",
-    "post_image": "https://image.kr/img.jpg"
-  },
-  {
-    "post_id": 25,
-    "title": "제목제목",
-    "view_count": 0,
-    "content": "내용내용",
-    "posted_time": "2024-12-03 13:55:47",
-    "post_image": "https://image.kr/img.jpg"
-  },
-  {
-    "post_id": 26,
-    "title": "제목제목",
-    "view_count": 0,
-    "content": "내용내용",
-    "posted_time": "2024-12-03 13:56:19",
     "post_image": "https://image.kr/img.jpg"
   }
 ]

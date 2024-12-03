@@ -21,12 +21,16 @@ function readUserByUserId(userId) {
 function readCommentByBoardId(boardId) {
     const rawData = fs.readFileSync(commentPath, 'utf-8');
     const comments = JSON.parse(rawData);
+    console.log(boardId);
     return comments
         .filter(comment => comment.board_id === boardId)
         .map(comment => {
             const user = readUserByUserId(comment.comment_writer_id);
             return {
-                ...comment,
+                comment_id: comment.comment_id,
+                comment_writer_id: comment.comment_writer_id,
+                comment_posted_time: comment.comment_posted_time,
+                comment_data: comment.comment_data,
                 comment_writer: user ? user.nickname : null,
                 comment_writer_profile: user ? user.profile_image : null,
             };
@@ -88,7 +92,28 @@ async function addBoard(data) {
     };
 }
 
+async function getBoardById(boardId) {
+    const boards = await readBoard();
+    const board = await boards.find(data => data.post_id === boardId);
+    const user = await readUserByUserId(board.user_id);
+    const comments = await readCommentByBoardId(boardId);
+    const likes = await readLikeByBoardId(boardId);
+    board.view_count += 1;
+    writeBoard(boards);
+    const boardInfo = {
+        ...board,
+        comment_count: comments.length,
+        likes_count: likes.length,
+        user_name: user ? user.nickname : null,
+        user_profile: user ? user.profile_image : null,
+        comments,
+    };
+
+    return boardInfo;
+}
+
 module.exports = {
     getAllBoard,
     addBoard,
+    getBoardById,
 };
