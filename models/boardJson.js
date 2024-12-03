@@ -112,8 +112,25 @@ async function getBoardById(boardId) {
     return boardInfo;
 }
 
+async function getBoardOwnerId(boardId) {
+    const boards = await readBoard();
+    const board = await boards.find(data => data.post_id === boardId);
+    return board.user_id;
+}
+
+async function editBoard(boardId, data) {
+    const boards = await readBoard();
+    const board = await boards.find(index => index.post_id === boardId);
+    board.title = data.title;
+    board.content = data.content;
+    board.post_image = data.post_image;
+    writeBoard(boards);
+}
+
 module.exports = {
     getAllBoard,
     addBoard,
     getBoardById,
+    getBoardOwnerId,
+    editBoard,
 };

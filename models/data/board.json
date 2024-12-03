@@ -2,7 +2,7 @@
   {
     "post_id": 1,
     "title": "제목1",
-    "view_count": 1,
+    "view_count": 4,
     "user_id": 1,
     "content": "여행을 좋아한다.",
     "posted_time": "2021-02-01 00:00:00",
@@ -19,10 +19,10 @@
   },
   {
     "post_id": 3,
-    "title": "제목3",
-    "view_count": 0,
+    "title": "제목제목\n",
+    "view_count": 6,
     "user_id": 3,
-    "content": "내용3",
+    "content": "내용내용",
     "posted_time": "2021-02-01 00:00:00",
     "post_image": "https://image.kr/img.jpg"
   },
