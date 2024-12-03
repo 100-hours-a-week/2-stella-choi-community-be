@@ -1,0 +1,23 @@
+[
+  {
+    "board_id": 1,
+    "comment_id": 1,
+    "comment_writer_id": 1,
+    "comment_posted_time": "2021-01-01 00:00:00",
+    "comment_data": "댓글 내용"
+  },
+  {
+    "board_id": 1,
+    "comment_id": 2,
+    "comment_writer_id": 2,
+    "comment_posted_time": "2021-01-01 00:00:00",
+    "comment_data": "댓글 내용2"
+  },
+  {
+    "board_id": 2,
+    "comment_id": 3,
+    "comment_writer_id": 3,
+    "comment_posted_time": "2021-01-01 00:00:00",
+    "comment_data": "댓글 내용3"
+  }
+]

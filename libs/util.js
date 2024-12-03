@@ -22,7 +22,7 @@ module.exports = {
         };
     },
     checkIsNum: string => {
-        if (Number.isNaN(string) === true) {
+        if (isNaN(string) === true) {
             return false;
         }
         return true;
