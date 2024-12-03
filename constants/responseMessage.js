@@ -52,4 +52,7 @@ module.exports = {
     // 게시글 수정
     EDIT_POST_SUCCESS: 'EDIT_POST_SUCCESS',
     ACCESS_DENIED: 'ACCESS_DENIED',
+
+    // 게시글 삭제
+    DELETE_POST_SUCCESS: 'DELETE_POST_SUCCESS',
 };

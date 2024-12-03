@@ -127,10 +127,20 @@ async function editBoard(boardId, data) {
     writeBoard(boards);
 }
 
+async function deleteBoard(boardId) {
+    const boards = await readBoard();
+    const filteredBoard = await boards.filter(
+        index => index.post_id !== boardId,
+    );
+
+    await writeBoard(filteredBoard);
+}
+
 module.exports = {
     getAllBoard,
     addBoard,
     getBoardById,
     getBoardOwnerId,
     editBoard,
+    deleteBoard,
 };
