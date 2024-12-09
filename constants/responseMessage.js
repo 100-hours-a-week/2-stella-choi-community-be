@@ -55,4 +55,7 @@ module.exports = {
 
     // 게시글 삭제
     DELETE_POST_SUCCESS: 'DELETE_POST_SUCCESS',
+
+    // 댓글 추가
+    CREATE_COMMENT_SUCCESS: 'CREATE_COMMENT_SUCCESS',
 };

@@ -19,5 +19,47 @@
     "comment_writer_id": 3,
     "comment_posted_time": "2021-01-01 00:00:00",
     "comment_data": "댓글 내용3"
+  },
+  {
+    "board_id": 1,
+    "comment_id": 4,
+    "comment_writer_id": 1,
+    "comment_posted_time": "2024-12-09 22:22:14",
+    "comment_content": "댓글댓글"
+  },
+  {
+    "board_id": 1,
+    "comment_id": 5,
+    "comment_writer_id": 1,
+    "comment_posted_time": "2024-12-09 22:22:48",
+    "comment_content": "댓글댓글"
+  },
+  {
+    "board_id": 2,
+    "comment_id": 6,
+    "comment_writer_id": 1,
+    "comment_posted_time": "2024-12-09 22:25:21",
+    "comment_content": "댓글댓글"
+  },
+  {
+    "board_id": 1,
+    "comment_id": 7,
+    "comment_writer_id": 1,
+    "comment_posted_time": "2024-12-09 22:26:17",
+    "comment_content": "댓글댓글"
+  },
+  {
+    "board_id": 3,
+    "comment_id": 8,
+    "comment_writer_id": 1,
+    "comment_posted_time": "2024-12-09 22:27:35",
+    "comment_content": "댓글댓글"
+  },
+  {
+    "board_id": 3,
+    "comment_id": 9,
+    "comment_writer_id": 1,
+    "comment_posted_time": "2024-12-09 22:29:00",
+    "comment_content": "댓글댓글"
   }
 ]
