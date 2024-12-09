@@ -4,8 +4,7 @@ const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
 
 const patchComment = async (req, res) => {
-    // const { userId } = req;
-    const userId = 1;
+    const { userId } = req;
     const { content } = req.body;
     const { commentId } = req.params;
 
