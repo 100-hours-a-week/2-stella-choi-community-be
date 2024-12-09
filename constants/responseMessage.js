@@ -61,4 +61,8 @@ module.exports = {
 
     // 댓글 수정
     EDIT_COMMENT_SUCCESS: 'EDIT_COMMENT_SUCCESS',
+
+    // 댓글 삭제
+    DELETE_COMMENT_SUCCESS: 'DELETE_COMMENT_SUCCESS',
+    NO_COMMENT: 'NO_COMMENT',
 };

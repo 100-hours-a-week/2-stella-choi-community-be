@@ -48,8 +48,18 @@ async function getCommentOwnerId(commentId) {
     return comment.comment_writer_id;
 }
 
+async function deleteComment(commentId) {
+    const comments = await readComment();
+    const filteredComments = await comments.filter(
+        index => index.comment_id !== commentId,
+    );
+
+    await writeData(filteredComments);
+}
+
 module.exports = {
     addComment,
     editComment,
     getCommentOwnerId,
+    deleteComment,
 };

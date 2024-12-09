@@ -1,16 +1,15 @@
-const { boardJson } = require('../../models');
+const { commentJson } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
 
-const deleteBoard = async (req, res) => {
+const deleteComment = async (req, res) => {
     const { userId } = req;
-    console.log(userId);
-    const { boardId } = req.params;
+    const { commentId } = req.params;
 
     // ACTION: INVALID_FORMAT
-    const boardNumId = Number(boardId);
-    if (!util.checkIsInRange(boardNumId)) {
+    const commentNumId = Number(commentId);
+    if (!util.checkIsInRange(commentNumId)) {
         return res
             .status(statusCode.BAD_REQUEST)
             .send(
@@ -21,17 +20,19 @@ const deleteBoard = async (req, res) => {
             );
     }
 
+    const commentOwner = await commentJson.getCommentOwnerId(commentNumId);
+
     // ACTION: ACCESS_DENIED
-    const boardOwner = await boardJson.getBoardOwnerId(boardNumId);
-    if (boardOwner !== userId) {
+    if (commentOwner !== userId) {
         return res
             .status(statusCode.FORBIDDEN)
             .send(
                 util.fail(statusCode.FORBIDDEN, responseMessage.ACCESS_DENIED),
             );
     }
+
     try {
-        await boardJson.deleteBoard(boardNumId);
+        await commentJson.deleteComment(commentNumId);
         return res
             .status(statusCode.OK)
             .send(
@@ -53,4 +54,4 @@ const deleteBoard = async (req, res) => {
     }
 };
 
-module.exports = deleteBoard;
+module.exports = deleteComment;

@@ -1,31 +1,10 @@
 [
   {
     "board_id": 1,
-    "comment_id": 1,
-    "comment_writer_id": 1,
-    "comment_posted_time": "2021-01-01 00:00:00",
-    "comment_data": "댓글 수정"
-  },
-  {
-    "board_id": 1,
     "comment_id": 2,
     "comment_writer_id": 2,
     "comment_posted_time": "2021-01-01 00:00:00",
     "comment_data": "댓글 내용2"
-  },
-  {
-    "board_id": 2,
-    "comment_id": 3,
-    "comment_writer_id": 3,
-    "comment_posted_time": "2021-01-01 00:00:00",
-    "comment_data": "댓글 내용3"
-  },
-  {
-    "board_id": 1,
-    "comment_id": 4,
-    "comment_writer_id": 1,
-    "comment_posted_time": "2024-12-09 22:22:14",
-    "comment_content": "댓글댓글"
   },
   {
     "board_id": 1,
