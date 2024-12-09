@@ -33,6 +33,23 @@ async function addComment(data) {
     };
 }
 
+async function editComment(commentId, data) {
+    const comments = await readComment();
+    const comment = await comments.find(
+        index => index.comment_id === commentId,
+    );
+    comment.comment_data = data.content;
+    writeData(comments);
+}
+
+async function getCommentOwnerId(commentId) {
+    const comments = await readComment();
+    const comment = await comments.find(data => data.comment_id === commentId);
+    return comment.comment_writer_id;
+}
+
 module.exports = {
     addComment,
+    editComment,
+    getCommentOwnerId,
 };

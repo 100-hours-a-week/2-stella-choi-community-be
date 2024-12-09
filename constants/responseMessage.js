@@ -58,4 +58,7 @@ module.exports = {
 
     // 댓글 추가
     CREATE_COMMENT_SUCCESS: 'CREATE_COMMENT_SUCCESS',
+
+    // 댓글 수정
+    EDIT_COMMENT_SUCCESS: 'EDIT_COMMENT_SUCCESS',
 };
