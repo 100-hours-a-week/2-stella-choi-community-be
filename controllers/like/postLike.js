@@ -1,14 +1,14 @@
-const { commentJson } = require('../../models');
+const { likeJson } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
 
-const postComment = async (req, res) => {
+const postLike = async (req, res) => {
     const { userId } = req;
-    const { board_id, content } = req.body;
+    const { board_id } = req.body;
 
     // ACTION: MISSING_FIELD
-    if (!board_id || !content) {
+    if (!board_id) {
         return res
             .status(statusCode.BAD_REQUEST)
             .send(
@@ -19,6 +19,7 @@ const postComment = async (req, res) => {
             );
     }
 
+    // ACTION: INVALID_FORMAT
     const boardNumId = Number(board_id);
     if (!util.checkIsInRange(boardNumId)) {
         return res
@@ -32,20 +33,18 @@ const postComment = async (req, res) => {
     }
 
     try {
-        const commentData = {
-            content,
+        const likeData = {
             board_id: boardNumId,
             user_id: userId,
         };
-        const commentId = await commentJson.addComment(commentData);
-        console.log(commentId);
+        const likeId = await likeJson.addLike(likeData);
         return res
             .status(statusCode.CREATED)
             .send(
                 util.success(
                     statusCode.CREATED,
-                    responseMessage.CREATE_COMMENT_SUCCESS,
-                    commentId,
+                    responseMessage.CREATE_LIKE_SUCCESS,
+                    likeId,
                 ),
             );
     } catch (error) {
@@ -61,4 +60,4 @@ const postComment = async (req, res) => {
     }
 };
 
-module.exports = postComment;
+module.exports = postLike;
