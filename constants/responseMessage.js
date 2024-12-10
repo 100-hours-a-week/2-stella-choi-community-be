@@ -65,4 +65,7 @@ module.exports = {
     // 댓글 삭제
     DELETE_COMMENT_SUCCESS: 'DELETE_COMMENT_SUCCESS',
     NO_COMMENT: 'NO_COMMENT',
+
+    // 좋아요 추가
+    CREATE_LIKE_SUCCESS: 'CREATE_LIKE_SUCCESS',
 };
