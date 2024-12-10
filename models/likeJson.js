@@ -41,6 +41,14 @@ async function getLike(userId, boardNumId) {
     };
 }
 
+async function findLike(userId, boardNumId) {
+    const likes = await readData();
+    const isLiked = await likes.some(
+        data => data.board_id === boardNumId && data.like_writer_id === userId,
+    );
+    return isLiked;
+}
+
 async function deleteLike(userId, boardNumId) {
     const likes = await readData();
 
@@ -70,6 +78,7 @@ async function deleteLike(userId, boardNumId) {
 module.exports = {
     addLike,
     getLike,
+    findLike,
     deleteLike,
     readData,
 };
