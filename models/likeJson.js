@@ -41,8 +41,35 @@ async function getLike(userId, boardNumId) {
     };
 }
 
+async function deleteLike(userId, boardNumId) {
+    const likes = await readData();
+
+    // 삭제 대상 존재 여부 확인
+    const exists = likes.some(
+        item => item.like_writer_id === userId && item.board_id === boardNumId,
+    );
+
+    if (!exists) {
+        console.log(
+            `삭제할 데이터가 없습니다: userId=${userId}, boardNumId=${boardNumId}`,
+        );
+        return false; // 삭제할 데이터가 없으므로 함수 종료
+    }
+
+    // 삭제 대상 필터링
+    const filteredData = likes.filter(
+        item =>
+            !(item.like_writer_id === userId && item.board_id === boardNumId),
+    );
+
+    // 데이터 저장
+    await writeData(filteredData);
+    return true;
+}
+
 module.exports = {
     addLike,
     getLike,
+    deleteLike,
     readData,
 };
