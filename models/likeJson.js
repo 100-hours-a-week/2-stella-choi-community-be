@@ -31,7 +31,18 @@ async function addLike(newLike) {
     };
 }
 
+async function getLike(userId, boardNumId) {
+    const likes = await readData();
+    const isLiked = await likes.some(
+        data => data.board_id === boardNumId && data.like_writer_id === userId,
+    );
+    return {
+        isLiked,
+    };
+}
+
 module.exports = {
     addLike,
+    getLike,
     readData,
 };

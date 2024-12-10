@@ -68,4 +68,7 @@ module.exports = {
 
     // 좋아요 추가
     CREATE_LIKE_SUCCESS: 'CREATE_LIKE_SUCCESS',
+
+    // 좋아요 조회
+    GET_LIKES_SUCCESS: 'GET_LIKES_SUCCESS',
 };
