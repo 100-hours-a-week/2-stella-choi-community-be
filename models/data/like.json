@@ -10,5 +10,11 @@
     "like_id": 3,
     "like_writer_id": 2,
     "like_posted_time": "2021-01-01 00:00:00"
+  },
+  {
+    "board_id": 3,
+    "like_id": 4,
+    "like_writer_id": 3,
+    "like_posted_time": "2024-12-10 14:34:50"
   }
 ]

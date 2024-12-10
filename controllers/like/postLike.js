@@ -33,6 +33,18 @@ const postLike = async (req, res) => {
     }
 
     try {
+        const existingLike = await likeJson.findLike(userId, boardNumId);
+
+        if (existingLike) {
+            return res
+                .status(statusCode.CONFLICT)
+                .send(
+                    util.fail(
+                        statusCode.CONFLICT,
+                        responseMessage.DUPLICATE_LIKE,
+                    ),
+                );
+        }
         const likeData = {
             board_id: boardNumId,
             user_id: userId,
