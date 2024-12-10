@@ -19,5 +19,40 @@
     "password": "$2b$10$xBXUODv742hm.Ogsd9KASeA0PWXz9IdGy1pmQ5YSOw7EtQ7feqq6.",
     "nickname": "startup6",
     "profile_image": "/images/userprofile.png"
+  },
+  {
+    "id": 5,
+    "email": "test@startupdke.kr4",
+    "password": "$2b$10$Ga0I6XXK8TjfD6nGA3bHk.acRnLWBRjPogFg7cE5ACzqesA58T35m",
+    "nickname": "startup4",
+    "profile_image": "uploads/others/69D13AE1-DEB0-44B7-94C6-AC5701E94397_1_201_a-1733819702096-4dbadeee-91f3-4780-90e8-6fc88bef4b53.jpeg"
+  },
+  {
+    "id": 6,
+    "email": "test@startupdke.kr5",
+    "password": "$2b$10$w5yB.kGGrrDQx3kpPkZLwO03xe.qQVZ5Pl3lM5930BkliYOt2KSlK",
+    "nickname": "startup55",
+    "profile_image": "uploads/profiles/69D13AE1-DEB0-44B7-94C6-AC5701E94397_1_201_a-1733819766559-6adfb109-adc6-4b47-a7ff-1984286de933.jpeg"
+  },
+  {
+    "id": 7,
+    "email": "test@startupdke.kr51",
+    "password": "$2b$10$26Ay2ohMC6dOni0eG.pfQu5klwnmFOIoWLvOqqpmNoWTGhr4TjTI.",
+    "nickname": "startup551",
+    "profile_image": "uploads/profiles/69D13AE1-DEB0-44B7-94C6-AC5701E94397_1_201_a-1733820333514.jpeg"
+  },
+  {
+    "id": 8,
+    "email": "test@startupdke.kr516",
+    "password": "$2b$10$7LGlp4wwYD4N2QC2zelq8.tH23e9.zEkAm0m2qm5KD6dnq/kCbLj2",
+    "nickname": "startup555",
+    "profile_image": "uploads/profiles/69D13AE1-DEB0-44B7-94C6-AC5701E94397_1_201_a-1733820809784.jpeg"
+  },
+  {
+    "id": 9,
+    "email": "test@startupd.com",
+    "password": "$2b$10$hhr9iPkkHbNxxnN54VzN8OMkY1j40UkVYxtKmXWk1crg862Ou.13K",
+    "nickname": "startu2",
+    "profile_image": "uploads/profiles/지도~-1733820866080.png"
   }
 ]

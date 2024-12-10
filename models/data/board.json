@@ -24,7 +24,7 @@
     "user_id": 3,
     "content": "내용내용",
     "posted_time": "2021-02-01 00:00:00",
-    "post_image": "https://image.kr/img.jpg"
+    "post_image": "uploads/posts/지도~-1733829792724.png"
   },
   {
     "post_id": 4,
@@ -178,5 +178,41 @@
     "content": "내용20",
     "posted_time": "2021-02-01 00:00:00",
     "post_image": "https://image.kr/img.jpg"
+  },
+  {
+    "post_id": 21,
+    "title": "제목제목",
+    "view_count": 0,
+    "user_id": 3,
+    "content": "내용내용",
+    "posted_time": "2024-12-10 19:40:38",
+    "post_image": "https://image.kr/img.jpg"
+  },
+  {
+    "post_id": 22,
+    "title": "제목제목",
+    "view_count": 0,
+    "user_id": 3,
+    "content": "내용내용",
+    "posted_time": "2024-12-10 19:43:13",
+    "post_image": "uploads/others/지도~-1733827393271.png"
+  },
+  {
+    "post_id": 23,
+    "title": "제목제목",
+    "view_count": 0,
+    "user_id": 3,
+    "content": "내용내용",
+    "posted_time": "2024-12-10 19:45:00",
+    "post_image": "uploads/others/지도~-1733827500345.png"
+  },
+  {
+    "post_id": 24,
+    "title": "제목제목",
+    "view_count": 0,
+    "user_id": 3,
+    "content": "내용내용",
+    "posted_time": "2024-12-10 19:47:25",
+    "post_image": "uploads/posts/지도~-1733827645446.png"
   }
 ]

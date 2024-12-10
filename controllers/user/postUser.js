@@ -5,8 +5,8 @@ const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
 
 const postUser = async (req, res) => {
-    const { email, password, password_check, nickname, profile_image } =
-        req.body;
+    const { email, password, password_check, nickname } = req.body;
+    const profile_image = req.file;
 
     // ACTION: MISSING_FIELD
     if (!email || !password || !password_check || !nickname || !profile_image) {
@@ -72,6 +72,8 @@ const postUser = async (req, res) => {
             );
     }
 
+    const profileImagePath = profile_image.path;
+
     try {
         const salt = 10;
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -80,7 +82,7 @@ const postUser = async (req, res) => {
             email,
             password: hashedPassword,
             nickname,
-            profile_image,
+            profile_image: profileImagePath,
         };
         await userJson.addUser(userData);
         return res

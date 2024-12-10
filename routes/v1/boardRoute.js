@@ -6,12 +6,13 @@ const postBoard = require('../../controllers/board/postBoard');
 const putBoard = require('../../controllers/board/putBoard');
 const deleteBoard = require('../../controllers/board/deleteBoard');
 const { authMiddleware } = require('../../middlewares/auth');
+const upload = require('../../middlewares/multer');
 
 const router = express.Router();
 
 router.get('/', authMiddleware, getAllBoard);
-router.post('/', authMiddleware, postBoard);
+router.post('/', authMiddleware, upload.single('post_image'), postBoard);
 router.get('/:boardId', authMiddleware, getBoard);
-router.put('/:boardId', authMiddleware, putBoard);
+router.put('/:boardId', authMiddleware, upload.single('post_image'), putBoard);
 router.delete('/:boardId', authMiddleware, deleteBoard);
 module.exports = router;
