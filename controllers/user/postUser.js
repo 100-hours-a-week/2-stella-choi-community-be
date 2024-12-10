@@ -48,18 +48,6 @@ const postUser = async (req, res) => {
             );
     }
 
-    // ACTION: DUPLICATE_NICKNAME
-    if (util.duplicateNickname(userJson.readData(), nickname)) {
-        return res
-            .status(statusCode.BAD_REQUEST)
-            .send(
-                util.fail(
-                    statusCode.BAD_REQUEST,
-                    responseMessage.DUPLICATE_NICKNAME,
-                ),
-            );
-    }
-
     // ACTION: DUPLICATE_EMAIL
     if (util.duplicateEmail(userJson.readData(), email)) {
         return res
@@ -68,6 +56,18 @@ const postUser = async (req, res) => {
                 util.fail(
                     statusCode.BAD_REQUEST,
                     responseMessage.DUPLICATE_EMAIL,
+                ),
+            );
+    }
+
+    // ACTION: DUPLICATE_NICKNAME
+    if (util.duplicateNickname(userJson.readData(), nickname)) {
+        return res
+            .status(statusCode.BAD_REQUEST)
+            .send(
+                util.fail(
+                    statusCode.BAD_REQUEST,
+                    responseMessage.DUPLICATE_NICKNAME,
                 ),
             );
     }
