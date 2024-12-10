@@ -71,4 +71,8 @@ module.exports = {
 
     // 좋아요 조회
     GET_LIKES_SUCCESS: 'GET_LIKES_SUCCESS',
+
+    // 좋아요 삭제
+    DELETE_LIKE_SUCCESS: 'DELETE_LIKE_SUCCESS',
+    NO_LIKE_DATA: 'NO_LIKE_DATA',
 };
