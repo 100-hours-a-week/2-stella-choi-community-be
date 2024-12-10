@@ -5,7 +5,8 @@ const util = require('../../libs/util');
 
 const putBoard = async (req, res) => {
     const { userId } = req;
-    const { title, content, post_image } = req.body;
+    const { title, content } = req.body;
+    const post_image = req.file;
     const { boardId } = req.params;
 
     // ACTION: MISSING_FIELD
@@ -54,11 +55,13 @@ const putBoard = async (req, res) => {
                 util.fail(statusCode.FORBIDDEN, responseMessage.ACCESS_DENIED),
             );
     }
+
+    const postImagePath = post_image.path;
     try {
         const putData = {
             title,
             content,
-            post_image,
+            post_image: postImagePath,
         };
         await boardJson.editBoard(boardNumId, putData);
         return res

@@ -5,7 +5,8 @@ const util = require('../../libs/util');
 
 const postBoard = async (req, res) => {
     const { userId } = req;
-    const { title, content, post_image } = req.body;
+    const { title, content } = req.body;
+    const post_image = req.file;
 
     // ACTION: MISSING_FIELD
     if (!title || !content || !post_image) {
@@ -31,12 +32,14 @@ const postBoard = async (req, res) => {
             );
     }
 
+    const postImagePath = post_image.path;
+
     try {
         const postData = {
             title,
             content,
             user_id: userId,
-            post_image,
+            post_image: postImagePath,
         };
         const boardId = await boardJson.addBoard(postData);
         return res
