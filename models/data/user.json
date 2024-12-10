@@ -12,5 +12,12 @@
     "password": "$2b$10$AGmKsxtoXEvXR38h54CHre9myVPrufTwbBx4MSxzsbtWQs3nwxGza",
     "nickname": "startup5",
     "profile_image": "/images/userprofile.png"
+  },
+  {
+    "id": 4,
+    "email": "yulim@naver.com",
+    "password": "$2b$10$xBXUODv742hm.Ogsd9KASeA0PWXz9IdGy1pmQ5YSOw7EtQ7feqq6.",
+    "nickname": "startup6",
+    "profile_image": "/images/userprofile.png"
   }
 ]
