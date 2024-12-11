@@ -1,65 +1,72 @@
 [
   {
+    "id": 1,
+    "email": "test1@startuprcfodke.kr",
+    "password": "$2b$10$FYoTyXu8sAGGz/svgdtF/OHLvJx4O3vS.U9tqp8YcN9QDvhLhM452",
+    "nickname": "startup5231",
+    "profile_image": "uploads/profiles/userprofile.png"
+  },
+  {
     "id": 2,
     "email": "test@startuprcfodke.kr",
     "password": "$2b$10$FYoTyXu8sAGGz/svgdtF/OHLvJx4O3vS.U9tqp8YcN9QDvhLhM452",
     "nickname": "startup523",
-    "profile_image": "/images/userprofile.png"
+    "profile_image": "uploads/profiles/userprofile2.png"
   },
   {
     "id": 3,
     "email": "test@startupdke.kr",
     "password": "$2b$10$AGmKsxtoXEvXR38h54CHre9myVPrufTwbBx4MSxzsbtWQs3nwxGza",
     "nickname": "startup5",
-    "profile_image": "uploads/profiles/userprofile.png"
+    "profile_image": "uploads/profiles/userprofile3.png"
   },
   {
     "id": 4,
     "email": "yulim@naver.com",
     "password": "$2b$10$xBXUODv742hm.Ogsd9KASeA0PWXz9IdGy1pmQ5YSOw7EtQ7feqq6.",
     "nickname": "startup6",
-    "profile_image": "uploads/profiles/userprofile.png"
+    "profile_image": "uploads/profiles/userprofile4.png"
   },
   {
     "id": 5,
     "email": "test@startupdke.kr4",
     "password": "$2b$10$Ga0I6XXK8TjfD6nGA3bHk.acRnLWBRjPogFg7cE5ACzqesA58T35m",
     "nickname": "startup4",
-    "profile_image": "uploads/others/69D13AE1-DEB0-44B7-94C6-AC5701E94397_1_201_a-1733819702096-4dbadeee-91f3-4780-90e8-6fc88bef4b53.jpeg"
+    "profile_image": "uploads/profiles/userprofile5.png"
   },
   {
     "id": 6,
     "email": "test@startupdke.kr5",
     "password": "$2b$10$w5yB.kGGrrDQx3kpPkZLwO03xe.qQVZ5Pl3lM5930BkliYOt2KSlK",
     "nickname": "startup55",
-    "profile_image": "uploads/profiles/69D13AE1-DEB0-44B7-94C6-AC5701E94397_1_201_a-1733819766559-6adfb109-adc6-4b47-a7ff-1984286de933.jpeg"
+    "profile_image": "uploads/profiles/userprofile4.png"
   },
   {
     "id": 7,
     "email": "test@startupdke.kr51",
     "password": "$2b$10$26Ay2ohMC6dOni0eG.pfQu5klwnmFOIoWLvOqqpmNoWTGhr4TjTI.",
     "nickname": "startup551",
-    "profile_image": "uploads/profiles/69D13AE1-DEB0-44B7-94C6-AC5701E94397_1_201_a-1733820333514.jpeg"
+    "profile_image": "uploads/profiles/userprofile3.png"
   },
   {
     "id": 8,
     "email": "test@startupdke.kr516",
     "password": "$2b$10$7LGlp4wwYD4N2QC2zelq8.tH23e9.zEkAm0m2qm5KD6dnq/kCbLj2",
     "nickname": "startup555",
-    "profile_image": "uploads/profiles/69D13AE1-DEB0-44B7-94C6-AC5701E94397_1_201_a-1733820809784.jpeg"
+    "profile_image": "uploads/profiles/userprofile1.png"
   },
   {
     "id": 9,
     "email": "test@startupd.com",
     "password": "$2b$10$hhr9iPkkHbNxxnN54VzN8OMkY1j40UkVYxtKmXWk1crg862Ou.13K",
     "nickname": "startu2",
-    "profile_image": "uploads/profiles/지도~-1733820866080.png"
+    "profile_image": "uploads/profiles/userprofile2.png"
   },
   {
     "id": 10,
     "email": "yulim38392@naver.com",
     "password": "$2b$10$3xndT9xu7ZkkxPasXgS8tuorAYRaeaSdW3Mx4.e7f2tW.4VkEjFui",
     "nickname": "스우",
-    "profile_image": "uploads/profiles/69D13AE1-DEB0-44B7-94C6-AC5701E94397_1_201_a-1733878688198.jpeg"
+    "profile_image": "uploads/profiles/userprofile5.png"
   }
 ]

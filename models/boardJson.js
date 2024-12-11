@@ -29,7 +29,7 @@ function readCommentByBoardId(boardId) {
                 comment_id: comment.comment_id,
                 comment_writer_id: comment.comment_writer_id,
                 comment_posted_time: comment.comment_posted_time,
-                comment_data: comment.comment_data,
+                comment_data: comment.comment_content,
                 comment_writer: user ? user.nickname : null,
                 comment_writer_profile: user ? user.profile_image : null,
             };
