@@ -17,6 +17,7 @@
     "colors": "1.4.0",
     "connect-timeout": "1.9.0",
     "cookie-parser": "1.4.7",
+    "cors": "2.8.5",
     "dotenv": "16.4.5",
     "eslint-config-airbnb": "19.0.4",
     "eslint-plugin-prettier": "5.2.1",
