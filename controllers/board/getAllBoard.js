@@ -39,7 +39,9 @@ const getAllBoard = async (req, res) => {
     }
 
     try {
-        const boards = await boardJson.getAllBoard(limit, offset);
+        const numOffset = Number(offset);
+        const numLimit = Number(limit);
+        const boards = await boardJson.getAllBoard(numLimit, numOffset);
         res.status(statusCode.OK).send(
             util.success(
                 statusCode.OK,

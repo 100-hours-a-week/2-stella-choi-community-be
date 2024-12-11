@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 const app = express();
 const session = require('express-session');
@@ -32,6 +33,8 @@ app.use(
         cookie: { secure: false }, // HTTPS 사용 시 true로 설정
     }),
 );
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads/')));
 
 app.use('/api', require('./routes'));
 

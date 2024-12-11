@@ -11,14 +11,14 @@
     "email": "test@startupdke.kr",
     "password": "$2b$10$AGmKsxtoXEvXR38h54CHre9myVPrufTwbBx4MSxzsbtWQs3nwxGza",
     "nickname": "startup5",
-    "profile_image": "/images/userprofile.png"
+    "profile_image": "uploads/profiles/userprofile.png"
   },
   {
     "id": 4,
     "email": "yulim@naver.com",
     "password": "$2b$10$xBXUODv742hm.Ogsd9KASeA0PWXz9IdGy1pmQ5YSOw7EtQ7feqq6.",
     "nickname": "startup6",
-    "profile_image": "/images/userprofile.png"
+    "profile_image": "uploads/profiles/userprofile.png"
   },
   {
     "id": 5,
@@ -54,5 +54,12 @@
     "password": "$2b$10$hhr9iPkkHbNxxnN54VzN8OMkY1j40UkVYxtKmXWk1crg862Ou.13K",
     "nickname": "startu2",
     "profile_image": "uploads/profiles/지도~-1733820866080.png"
+  },
+  {
+    "id": 10,
+    "email": "yulim38392@naver.com",
+    "password": "$2b$10$3xndT9xu7ZkkxPasXgS8tuorAYRaeaSdW3Mx4.e7f2tW.4VkEjFui",
+    "nickname": "스우",
+    "profile_image": "uploads/profiles/69D13AE1-DEB0-44B7-94C6-AC5701E94397_1_201_a-1733878688198.jpeg"
   }
 ]

@@ -21,7 +21,6 @@ function readUserByUserId(userId) {
 function readCommentByBoardId(boardId) {
     const rawData = fs.readFileSync(commentPath, 'utf-8');
     const comments = JSON.parse(rawData);
-    console.log(boardId);
     return comments
         .filter(comment => comment.board_id === boardId)
         .map(comment => {
@@ -49,8 +48,10 @@ function writeBoard(data) {
 
 async function getAllBoard(limit, offset) {
     const boards = await readBoard();
+    const slicedBoards = boards.slice(offset, offset + limit); // 먼저 자르고
+
     const result = await Promise.all(
-        boards.slice(offset, offset + limit).map(async board => {
+        slicedBoards.map(async board => {
             const comments = await readCommentByBoardId(board.post_id);
             const likes = await readLikeByBoardId(board.post_id);
             const user = await readUserByUserId(board.user_id);
