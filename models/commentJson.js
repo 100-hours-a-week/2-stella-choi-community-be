@@ -38,7 +38,7 @@ async function editComment(commentId, data) {
     const comment = await comments.find(
         index => index.comment_id === commentId,
     );
-    comment.comment_data = data.content;
+    comment.comment_content = data.content;
     writeData(comments);
 }
 
