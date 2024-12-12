@@ -48,7 +48,15 @@ function writeBoard(data) {
 
 async function getAllBoard(limit, offset) {
     const boards = await readBoard();
-    const slicedBoards = boards.slice(offset, offset + limit); // 먼저 자르고
+
+    // 최신순 정렬
+    const sortedBoards = boards.sort((a, b) => {
+        const timeA = new Date(a.posted_time || 0).getTime();
+        const timeB = new Date(b.posted_time || 0).getTime();
+        return timeB - timeA; // 내림차순 정렬
+    });
+
+    const slicedBoards = sortedBoards.slice(offset, offset + limit);
 
     const result = await Promise.all(
         slicedBoards.map(async board => {
