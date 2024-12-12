@@ -14,7 +14,7 @@ const router = express.Router();
 
 router.post('/', upload.single('profile_image'), postUser);
 router.get('/', authMiddleware, getUser);
-router.patch('/', authMiddleware, patchUser);
+router.patch('/', authMiddleware, upload.single('profile_image'), patchUser);
 router.delete('/', authMiddleware, deleteUser);
 router.post('/login', loginUser);
 router.post('/logout', authMiddleware, logoutUser);
