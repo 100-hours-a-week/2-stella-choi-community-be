@@ -13,6 +13,7 @@ const getUser = async (req, res) => {
                 email: user.email,
                 nickname: user.nickname,
                 profile_image: user.profile_image,
+                user_id: userId,
             };
             res.status(statusCode.OK).send(
                 util.success(
