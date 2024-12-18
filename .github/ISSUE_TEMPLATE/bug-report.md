@@ -1,9 +1,9 @@
 ---
 name: BUG REPORT
 about: 버그 리포트 기본 구조입니다.
-title: "안건"
+title: " [OS-브라우저-가로사이즈-페이지명] 안건"
 labels: ''
-assignees: choiyoorim
+assignees: ''
 
 ---
 
@@ -23,6 +23,16 @@ assignees: choiyoorim
 **스크린샷**
  문제를 설명하는 데 도움이 되는 스크린샷을 추가하세요. 스크린샷으로 어렵다면 영상첨부해주세요.
 
+**데스크톱(다음 정보를 작성해 주세요):**
+ - OS: [예) iOS]
+ - Browser [예) chrome, safari]
+ - Version [예) 22]
+
+**스마트폰(다음 정보를 입력하세요):**
+ - Device: [예) iPhone6]
+ - OS: [예) iOS8.1]
+ - Browser [예) chrome, safari]
+ - Version [예) 22]
 
 **추가적인 내용:**
 여기에 문제에 대한 다른 컨텍스트를 추가해주세요.
