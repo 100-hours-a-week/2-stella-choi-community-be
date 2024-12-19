@@ -107,7 +107,6 @@ async function getBoardById(boardId) {
     const user = await readUserByUserId(board.user_id);
     const comments = await readCommentByBoardId(boardId);
     const likes = await readLikeByBoardId(boardId);
-    board.view_count += 1;
     writeBoard(boards);
     const boardInfo = {
         ...board,
@@ -119,6 +118,13 @@ async function getBoardById(boardId) {
     };
 
     return boardInfo;
+}
+
+async function incrementViewCount(boardId) {
+    const boards = await readBoard();
+    const board = await boards.find(data => data.post_id === boardId);
+    board.view_count += 1;
+    writeBoard(boards);
 }
 
 async function getBoardOwnerId(boardId) {
@@ -149,6 +155,7 @@ module.exports = {
     getAllBoard,
     addBoard,
     getBoardById,
+    incrementViewCount,
     getBoardOwnerId,
     editBoard,
     deleteBoard,
