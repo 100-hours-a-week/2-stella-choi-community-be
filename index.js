@@ -9,7 +9,7 @@ const cors = require('cors');
 const PORT = 8080;
 require('dotenv').config();
 
-const allowedOrigins = ['http://localhost:3000']; // 허용할 호스트
+const allowedOrigins = ['http://localhost:3000', 'http://3.34.50.126:3000']; // 허용할 호스트
 app.use(
     cors({
         origin: (origin, callback) => {
