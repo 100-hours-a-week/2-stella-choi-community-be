@@ -1,25 +1,24 @@
-const mysql = require('mysql');
-const util = require('util');
+const mariadb = require('mariadb');
 require('dotenv').config();
 
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: process.env.USERNAME,
-    password: process.env.PASSWORD,
+const pool = mariadb.createPool({
+    host: process.env.MARIA_HOST,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE,
+    connectionLimit: 15, // 최대 연결 개수 설정
 });
 
-// pool.query를 Promise로 변환
-pool.query = util.promisify(pool.query);
-
-// 데이터베이스 연결 확인 (커넥션 풀 사용 시 필요 없음)
-pool.getConnection((err, connection) => {
-    if (err) {
+// 데이터베이스 연결 테스트
+(async () => {
+    console.log('Host:', process.env.MARIA_HOST);
+    try {
+        const connection = await pool.getConnection();
+        console.log('MariaDB 데이터베이스에 연결되었습니다.');
+        connection.release(); // 연결 해제
+    } catch (err) {
         console.error('데이터베이스 연결 실패:', err);
-        return;
     }
-    console.log('데이터베이스에 연결되었습니다.');
-    connection.release(); // 사용 후 연결 해제
-});
+})();
 
 module.exports = pool;
