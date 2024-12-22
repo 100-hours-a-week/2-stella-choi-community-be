@@ -3,4 +3,5 @@ module.exports = {
     boardJson: require('./boardJson'),
     commentJson: require('./commentJson'),
     likeJson: require('./likeJson'),
+    userDB: require('./userDB'),
 };

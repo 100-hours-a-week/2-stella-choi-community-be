@@ -1,10 +1,12 @@
 const statusCode = require('../constants/statusCode');
 const responseMessage = require('../constants/responseMessage');
 const util = require('../libs/util');
-const { userJson } = require('../models');
+const { userDB } = require('../models');
+const pool = require('../models/db');
 
 // 인가 미들웨어
-const authMiddleware = (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
+    const connection = await pool.getConnection();
     if (!req.session) {
         return res
             .status(statusCode.BAD_REQUEST)
@@ -26,9 +28,7 @@ const authMiddleware = (req, res, next) => {
             );
     }
 
-    const user = userJson
-        .readData()
-        .find(info => info.id === req.session.userId);
+    const user = await userDB.findUserBySession(connection, req.session.userId);
 
     if (!user) {
         return res

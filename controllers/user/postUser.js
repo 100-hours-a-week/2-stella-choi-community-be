@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt');
-const { userJson } = require('../../models');
+const { userDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const postUser = async (req, res) => {
+    const connection = await pool.getConnection();
     const { email, password, password_check, nickname } = req.body;
     const profile_image = req.file;
 
@@ -49,7 +51,7 @@ const postUser = async (req, res) => {
     }
 
     // ACTION: DUPLICATE_EMAIL
-    if (util.duplicateEmail(userJson.readData(), email)) {
+    if (await userDB.findUserByEmail(connection, email)) {
         return res
             .status(statusCode.BAD_REQUEST)
             .send(
@@ -61,7 +63,7 @@ const postUser = async (req, res) => {
     }
 
     // ACTION: DUPLICATE_NICKNAME
-    if (util.duplicateNickname(userJson.readData(), nickname)) {
+    if (await userDB.findUserByNickname(connection, nickname)) {
         return res
             .status(statusCode.BAD_REQUEST)
             .send(
@@ -84,7 +86,7 @@ const postUser = async (req, res) => {
             nickname,
             profile_image: profileImagePath,
         };
-        await userJson.addUser(userData);
+        await userDB.addUser(connection, userData);
         return res
             .status(statusCode.CREATED)
             .send(

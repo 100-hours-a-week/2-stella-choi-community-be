@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt');
-const { userJson } = require('../../models');
+const { userDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const loginUser = async (req, res) => {
+    const connection = await pool.getConnection();
     const { email, password } = req.body;
 
     // ACTION: MISSING_FIELD
@@ -33,7 +35,7 @@ const loginUser = async (req, res) => {
 
     // ACTION: NOT_AUTHORIZED , NOT_FOUND_USER
     try {
-        const user = await userJson.findUser(email);
+        const user = await userDB.findUser(connection, email);
         if (user) {
             const isPasswordMatch = await bcrypt.compare(
                 password,
