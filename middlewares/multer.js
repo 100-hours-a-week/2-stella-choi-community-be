@@ -11,6 +11,7 @@ const ensureDirectoryExistence = dir => {
 // Multer 스토리지 설정
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
+        console.log(req.body);
         const { category } = req.body;
         console.log(`${category} uploaded`);
         const basePath = 'uploads/';

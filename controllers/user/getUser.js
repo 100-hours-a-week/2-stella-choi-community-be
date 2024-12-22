@@ -1,14 +1,16 @@
-const { userJson } = require('../../models');
+const { userDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const getUser = async (req, res) => {
+    const connection = await pool.getConnection();
     const { userId } = req;
 
     try {
         if (userId) {
-            const user = await userJson.findUserBySession(userId);
+            const user = await userDB.findUserBySession(connection, userId);
             const response = {
                 email: user.email,
                 nickname: user.nickname,

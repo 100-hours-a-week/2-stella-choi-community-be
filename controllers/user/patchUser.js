@@ -1,9 +1,11 @@
-const { userJson } = require('../../models');
+const { userDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const patchUser = async (req, res) => {
+    const connection = await pool.getConnection();
     const { userId } = req;
     const { nickname } = req.body;
     const profile_image = req.file;
@@ -32,8 +34,8 @@ const patchUser = async (req, res) => {
             }
 
             // [ACTION] DUPLICATE NICKNAME
-            if (util.duplicateNickname(userJson.readData(), nickname)) {
-                const user = await userJson.findUserBySession(userId);
+            if (await userDB.findUserByNickname(connection, nickname)) {
+                const user = await userDB.findUserBySession(connection, userId);
                 const lastNickname = user.nickname;
                 if (lastNickname !== nickname) {
                     return res
@@ -48,7 +50,7 @@ const patchUser = async (req, res) => {
             }
         }
 
-        const user = await userJson.findUserBySession(userId);
+        const user = await userDB.findUserBySession(connection, userId);
         if (profile_image) {
             const profileImagePath = profile_image.path;
             user.profile_image = profileImagePath;
@@ -57,9 +59,13 @@ const patchUser = async (req, res) => {
             user.nickname = nickname;
         }
 
-        console.log(user);
+        const newUser = {
+            id: user.id,
+            nickname: user.nickname,
+            profile_image: user.profile_image,
+        };
 
-        await userJson.updateUser(user);
+        await userDB.updateUser(connection, newUser);
         return res
             .status(statusCode.OK)
             .send(

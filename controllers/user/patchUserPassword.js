@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt');
-const { userJson } = require('../../models');
+const { userDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const patchUserPassword = async (req, res) => {
+    const connection = await pool.getConnection();
     const { userId } = req;
     const { password, password_check } = req.body;
     if (!password || !password_check) {
@@ -40,7 +42,7 @@ const patchUserPassword = async (req, res) => {
             );
     }
 
-    const user = await userJson.findUserBySession(userId);
+    const user = await userDB.findUserBySession(connection, userId);
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (isPasswordMatch) {
         return res
@@ -56,11 +58,9 @@ const patchUserPassword = async (req, res) => {
     try {
         const salt = 10;
         const hashedPassword = await bcrypt.hash(password, salt);
-        console.log(user.password);
-        console.log(hashedPassword);
         user.password = hashedPassword;
 
-        await userJson.updateUser(user);
+        await userDB.updateUser(connection, user);
         return res
             .status(statusCode.OK)
             .send(
