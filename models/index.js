@@ -6,4 +6,5 @@ module.exports = {
     userDB: require('./userDB'),
     boardDB: require('./boardDB'),
     commentDB: require('./commentDB'),
+    likeDB: require('./likeDB'),
 };

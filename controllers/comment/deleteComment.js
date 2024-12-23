@@ -66,6 +66,8 @@ const deleteComment = async (req, res) => {
                     responseMessage.INTERNAL_SERVER_ERROR,
                 ),
             );
+    } finally {
+        await connection.release();
     }
 };
 

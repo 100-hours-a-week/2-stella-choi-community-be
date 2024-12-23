@@ -1,9 +1,11 @@
-const { likeJson } = require('../../models');
+const { likeDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const deleteLike = async (req, res) => {
+    const connection = await pool.getConnection();
     const { userId } = req;
     const { boardId } = req.params;
 
@@ -32,7 +34,11 @@ const deleteLike = async (req, res) => {
     }
 
     try {
-        const checkDeleted = await likeJson.deleteLike(userId, boardNumId);
+        const checkDeleted = await likeDB.deleteLike(
+            connection,
+            userId,
+            boardNumId,
+        );
         if (!checkDeleted) {
             return res
                 .status(statusCode.BAD_REQUEST)
