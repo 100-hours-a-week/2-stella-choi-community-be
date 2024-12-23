@@ -28,21 +28,29 @@ const authMiddleware = async (req, res, next) => {
             );
     }
 
-    const user = await userDB.findUserBySession(connection, req.session.userId);
+    try {
+        const user = await userDB.findUserBySession(
+            connection,
+            req.session.userId,
+        );
+        if (!user) {
+            return res
+                .status(statusCode.UNAUTHORIZED)
+                .send(
+                    util.fail(
+                        statusCode.UNAUTHORIZED,
+                        responseMessage.NOT_FOUND_USER,
+                    ),
+                );
+        }
 
-    if (!user) {
-        return res
-            .status(statusCode.UNAUTHORIZED)
-            .send(
-                util.fail(
-                    statusCode.UNAUTHORIZED,
-                    responseMessage.NOT_FOUND_USER,
-                ),
-            );
+        req.userId = user.id;
+        next();
+    } catch (error) {
+        console.error(error);
+    } finally {
+        await connection.release();
     }
-
-    req.userId = user.id;
-    next();
 };
 
 module.exports = {
