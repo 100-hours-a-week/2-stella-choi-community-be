@@ -1,9 +1,11 @@
-const { likeJson } = require('../../models');
+const { likeDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const getLike = async (req, res) => {
+    const connection = await pool.getConnection();
     const { userId } = req;
     const { boardId } = req.params;
     if (!boardId) {
@@ -30,7 +32,7 @@ const getLike = async (req, res) => {
     }
 
     try {
-        const isLiked = await likeJson.getLike(userId, boardNumId);
+        const isLiked = await likeDB.findLike(connection, userId, boardNumId);
         res.status(statusCode.OK).send(
             util.success(
                 statusCode.OK,

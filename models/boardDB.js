@@ -49,7 +49,9 @@ const addBoard = async (connection, newBoard) => {
         const serializedRows = JSON.stringify(rows, (key, value) =>
             typeof value === 'bigint' ? value.toString() : value,
         );
-        return JSON.parse(serializedRows).insertId;
+        return {
+            post_id: JSON.parse(serializedRows).insertId,
+        };
     } catch (error) {
         console.log('Error adding post: ', error);
         throw error;

@@ -14,7 +14,9 @@ const addComment = async (connection, newComment) => {
         const serializedRows = JSON.stringify(rows, (key, value) =>
             typeof value === 'bigint' ? value.toString() : value,
         );
-        return JSON.parse(serializedRows).insertId;
+        return {
+            comment_id: JSON.parse(serializedRows).insertId,
+        };
     } catch (error) {
         console.log('Error adding comment: ', error);
         throw error;

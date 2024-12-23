@@ -1,9 +1,11 @@
-const { likeJson } = require('../../models');
+const { likeDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const postLike = async (req, res) => {
+    const connection = await pool.getConnection();
     const { userId } = req;
     const { board_id } = req.body;
 
@@ -33,9 +35,13 @@ const postLike = async (req, res) => {
     }
 
     try {
-        const existingLike = await likeJson.findLike(userId, boardNumId);
+        const existingLike = await likeDB.findLike(
+            connection,
+            userId,
+            boardNumId,
+        );
 
-        if (existingLike) {
+        if (existingLike.isLiked) {
             return res
                 .status(statusCode.CONFLICT)
                 .send(
@@ -46,10 +52,10 @@ const postLike = async (req, res) => {
                 );
         }
         const likeData = {
-            board_id: boardNumId,
-            user_id: userId,
+            post_id: boardNumId,
+            like_writer_id: userId,
         };
-        const likeId = await likeJson.addLike(likeData);
+        const likeId = await likeDB.addLike(connection, likeData);
         return res
             .status(statusCode.CREATED)
             .send(
