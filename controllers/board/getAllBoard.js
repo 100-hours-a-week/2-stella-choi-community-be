@@ -4,8 +4,14 @@ const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
 const pool = require('../../models/db');
 
+const logPoolStatus = () => {
+    console.log(`Pool status: 
+        Active connections: ${pool.activeConnections()}
+        Idle connections: ${pool.idleConnections()}`);
+};
+
 const getAllBoard = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { offset, limit } = req.query;
     if (!offset || !limit) {
         return res
@@ -41,6 +47,7 @@ const getAllBoard = async (req, res) => {
     }
 
     try {
+        connection = await pool.getConnection();
         const numOffset = Number(offset);
         const numLimit = Number(limit);
         const boards = await boardDB.getAllBoard(
@@ -64,6 +71,8 @@ const getAllBoard = async (req, res) => {
                 responseMessage.INTERNAL_SERVER_ERROR,
             ),
         );
+    } finally {
+        await connection.release();
     }
 };
 
