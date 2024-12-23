@@ -1,9 +1,11 @@
-const { commentJson } = require('../../models');
+const { commentDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const postComment = async (req, res) => {
+    const connection = await pool.getConnection();
     const { userId } = req;
     const { board_id, content } = req.body;
 
@@ -33,11 +35,11 @@ const postComment = async (req, res) => {
 
     try {
         const commentData = {
-            content,
-            board_id: boardNumId,
-            user_id: userId,
+            comment_data: content,
+            post_id: boardNumId,
+            comment_writer_id: userId,
         };
-        const commentId = await commentJson.addComment(commentData);
+        const commentId = await commentDB.addComment(connection, commentData);
         console.log(commentId);
         return res
             .status(statusCode.CREATED)
@@ -58,6 +60,8 @@ const postComment = async (req, res) => {
                     responseMessage.INTERNAL_SERVER_ERROR,
                 ),
             );
+    } finally {
+        await connection.release();
     }
 };
 

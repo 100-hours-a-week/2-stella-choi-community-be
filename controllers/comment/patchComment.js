@@ -1,9 +1,11 @@
-const { commentJson } = require('../../models');
+const { commentDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const patchComment = async (req, res) => {
+    const connection = await pool.getConnection();
     const { userId } = req;
     const { content } = req.body;
     const { commentId } = req.params;
@@ -34,7 +36,10 @@ const patchComment = async (req, res) => {
     }
 
     // ACTION: ACCESS_DENIED
-    const commentOwner = await commentJson.getCommentOwnerId(commentNumId);
+    const commentOwner = await commentDB.getCommentOwnerId(
+        connection,
+        commentNumId,
+    );
     if (commentOwner !== userId) {
         return res
             .status(statusCode.FORBIDDEN)
@@ -47,7 +52,7 @@ const patchComment = async (req, res) => {
         const putData = {
             content,
         };
-        await commentJson.editComment(commentNumId, putData);
+        await commentDB.editComment(connection, commentNumId, putData);
         return res
             .status(statusCode.OK)
             .send(
