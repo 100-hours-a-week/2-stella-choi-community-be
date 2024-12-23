@@ -1,9 +1,11 @@
-const { commentJson } = require('../../models');
+const { commentDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const deleteComment = async (req, res) => {
+    const connection = await pool.getConnection();
     const { userId } = req;
     const { commentId } = req.params;
 
@@ -20,7 +22,10 @@ const deleteComment = async (req, res) => {
             );
     }
 
-    const commentOwner = await commentJson.getCommentOwnerId(commentNumId);
+    const commentOwner = await commentDB.getCommentOwnerId(
+        connection,
+        commentNumId,
+    );
 
     // ACTION: ACCESS_DENIED
     if (commentOwner !== userId) {
@@ -32,13 +37,23 @@ const deleteComment = async (req, res) => {
     }
 
     try {
-        await commentJson.deleteComment(commentNumId);
+        const result = await commentDB.deleteComment(connection, commentNumId);
+        if (result) {
+            return res
+                .status(statusCode.OK)
+                .send(
+                    util.success(
+                        statusCode.OK,
+                        responseMessage.DELETE_COMMENT_SUCCESS,
+                    ),
+                );
+        }
         return res
-            .status(statusCode.OK)
+            .status(statusCode.BAD_REQUEST)
             .send(
-                util.success(
-                    statusCode.OK,
-                    responseMessage.DELETE_POST_SUCCESS,
+                util.fail(
+                    statusCode.BAD_REQUEST,
+                    responseMessage.DELETE_COMMENT_FAIL,
                 ),
             );
     } catch (error) {
