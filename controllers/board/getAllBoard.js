@@ -1,9 +1,11 @@
-const { boardJson } = require('../../models');
+const { boardDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const getAllBoard = async (req, res) => {
+    const connection = await pool.getConnection();
     const { offset, limit } = req.query;
     if (!offset || !limit) {
         return res
@@ -41,7 +43,12 @@ const getAllBoard = async (req, res) => {
     try {
         const numOffset = Number(offset);
         const numLimit = Number(limit);
-        const boards = await boardJson.getAllBoard(numLimit, numOffset);
+        const boards = await boardDB.getAllBoard(
+            connection,
+            numLimit,
+            numOffset,
+        );
+
         res.status(statusCode.OK).send(
             util.success(
                 statusCode.OK,

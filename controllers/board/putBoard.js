@@ -1,9 +1,11 @@
-const { boardJson } = require('../../models');
+const { boardDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const putBoard = async (req, res) => {
+    const connection = await pool.getConnection();
     const { userId } = req;
     const { title, content } = req.body;
     const post_image = req.file;
@@ -47,7 +49,7 @@ const putBoard = async (req, res) => {
     }
 
     // ACTION: ACCESS_DENIED
-    const boardOwner = await boardJson.getBoardOwnerId(boardNumId);
+    const boardOwner = await boardDB.getBoardOwnerId(connection, boardNumId);
     if (boardOwner !== userId) {
         return res
             .status(statusCode.FORBIDDEN)
@@ -63,7 +65,7 @@ const putBoard = async (req, res) => {
             content,
             post_image: postImagePath,
         };
-        await boardJson.editBoard(boardNumId, putData);
+        await boardDB.editBoard(connection, boardNumId, putData);
         return res
             .status(statusCode.OK)
             .send(

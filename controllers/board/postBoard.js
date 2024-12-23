@@ -1,9 +1,11 @@
-const { boardJson } = require('../../models');
+const { boardDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const postBoard = async (req, res) => {
+    const connection = await pool.getConnection();
     const { userId } = req;
     const { title, content } = req.body;
     const post_image = req.file;
@@ -41,7 +43,7 @@ const postBoard = async (req, res) => {
             user_id: userId,
             post_image: postImagePath,
         };
-        const boardId = await boardJson.addBoard(postData);
+        const boardId = await boardDB.addBoard(connection, postData);
         return res
             .status(statusCode.CREATED)
             .send(

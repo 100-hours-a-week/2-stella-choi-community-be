@@ -1,9 +1,11 @@
-const { boardJson } = require('../../models');
+const { boardDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const getBoard = async (req, res) => {
+    const connection = await pool.getConnection();
     const { boardId } = req.params;
     if (!boardId) {
         return res
@@ -28,7 +30,7 @@ const getBoard = async (req, res) => {
     }
 
     try {
-        const board = await boardJson.getBoardById(boardNumId);
+        const board = await boardDB.getBoardById(connection, boardNumId);
         res.status(statusCode.OK).send(
             util.success(
                 statusCode.OK,
