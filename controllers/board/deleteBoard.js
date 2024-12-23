@@ -1,11 +1,12 @@
-const { boardJson } = require('../../models');
+const { boardDB } = require('../../models');
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const pool = require('../../models/db');
 
 const deleteBoard = async (req, res) => {
+    const connection = await pool.getConnection();
     const { userId } = req;
-    console.log(userId);
     const { boardId } = req.params;
 
     // ACTION: INVALID_FORMAT
@@ -22,7 +23,7 @@ const deleteBoard = async (req, res) => {
     }
 
     // ACTION: ACCESS_DENIED
-    const boardOwner = await boardJson.getBoardOwnerId(boardNumId);
+    const boardOwner = await boardDB.getBoardOwnerId(connection, boardNumId);
     if (boardOwner !== userId) {
         return res
             .status(statusCode.FORBIDDEN)
@@ -31,13 +32,23 @@ const deleteBoard = async (req, res) => {
             );
     }
     try {
-        await boardJson.deleteBoard(boardNumId);
+        const result = await boardDB.deleteBoard(connection, boardNumId);
+        if (result) {
+            return res
+                .status(statusCode.OK)
+                .send(
+                    util.success(
+                        statusCode.OK,
+                        responseMessage.DELETE_POST_SUCCESS,
+                    ),
+                );
+        }
         return res
-            .status(statusCode.OK)
+            .status(statusCode.BAD_REQUEST)
             .send(
-                util.success(
-                    statusCode.OK,
-                    responseMessage.DELETE_POST_SUCCESS,
+                util.fail(
+                    statusCode.BAD_REQUEST,
+                    responseMessage.DELETE_POST_FAIL,
                 ),
             );
     } catch (error) {
