@@ -4,8 +4,14 @@ const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
 const pool = require('../../models/db');
 
+const logPoolStatus = () => {
+    console.log(`Pool status: 
+        Active connections: ${pool.activeConnections()}
+        Idle connections: ${pool.idleConnections()}`);
+};
+
 const getBoard = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { boardId } = req.params;
     if (!boardId) {
         return res
@@ -30,6 +36,7 @@ const getBoard = async (req, res) => {
     }
 
     try {
+        connection = await pool.getConnection();
         const board = await boardDB.getBoardById(connection, boardNumId);
         res.status(statusCode.OK).send(
             util.success(
@@ -48,6 +55,7 @@ const getBoard = async (req, res) => {
         );
     } finally {
         await connection.release();
+        logPoolStatus();
     }
 };
 

@@ -6,7 +6,7 @@ const pool = require('../models/db');
 
 // 인가 미들웨어
 const authMiddleware = async (req, res, next) => {
-    const connection = await pool.getConnection();
+    let connection;
     if (!req.session) {
         return res
             .status(statusCode.BAD_REQUEST)
@@ -29,6 +29,7 @@ const authMiddleware = async (req, res, next) => {
     }
 
     try {
+        connection = await pool.getConnection();
         const user = await userDB.findUserBySession(
             connection,
             req.session.userId,

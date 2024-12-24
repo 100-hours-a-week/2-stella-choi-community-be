@@ -5,7 +5,7 @@ const util = require('../../libs/util');
 const pool = require('../../models/db');
 
 const deleteLike = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { userId } = req;
     const { boardId } = req.params;
 
@@ -34,6 +34,7 @@ const deleteLike = async (req, res) => {
     }
 
     try {
+        connection = await pool.getConnection();
         const checkDeleted = await likeDB.deleteLike(
             connection,
             userId,
@@ -68,6 +69,8 @@ const deleteLike = async (req, res) => {
                     responseMessage.INTERNAL_SERVER_ERROR,
                 ),
             );
+    } finally {
+        await connection.release();
     }
 };
 

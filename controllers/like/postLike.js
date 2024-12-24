@@ -5,7 +5,7 @@ const util = require('../../libs/util');
 const pool = require('../../models/db');
 
 const postLike = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { userId } = req;
     const { board_id } = req.body;
 
@@ -35,6 +35,7 @@ const postLike = async (req, res) => {
     }
 
     try {
+        connection = await pool.getConnection();
         const existingLike = await likeDB.findLike(
             connection,
             userId,
@@ -75,6 +76,8 @@ const postLike = async (req, res) => {
                     responseMessage.INTERNAL_SERVER_ERROR,
                 ),
             );
+    } finally {
+        await connection.release();
     }
 };
 

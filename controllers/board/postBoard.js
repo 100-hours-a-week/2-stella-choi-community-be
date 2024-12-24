@@ -5,7 +5,7 @@ const util = require('../../libs/util');
 const pool = require('../../models/db');
 
 const postBoard = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { userId } = req;
     const { title, content } = req.body;
     const post_image = req.file;
@@ -37,6 +37,7 @@ const postBoard = async (req, res) => {
     const postImagePath = post_image.path;
 
     try {
+        connection = await pool.getConnection();
         const postData = {
             title,
             content,

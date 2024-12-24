@@ -5,7 +5,7 @@ const util = require('../../libs/util');
 const pool = require('../../models/db');
 
 const putBoard = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { userId } = req;
     const { title, content } = req.body;
     const post_image = req.file;
@@ -48,18 +48,26 @@ const putBoard = async (req, res) => {
             );
     }
 
-    // ACTION: ACCESS_DENIED
-    const boardOwner = await boardDB.getBoardOwnerId(connection, boardNumId);
-    if (boardOwner !== userId) {
-        return res
-            .status(statusCode.FORBIDDEN)
-            .send(
-                util.fail(statusCode.FORBIDDEN, responseMessage.ACCESS_DENIED),
-            );
-    }
-
-    const postImagePath = post_image.path;
     try {
+        connection = await pool.getConnection();
+
+        // ACTION: ACCESS_DENIED
+        const boardOwner = await boardDB.getBoardOwnerId(
+            connection,
+            boardNumId,
+        );
+        if (boardOwner !== userId) {
+            return res
+                .status(statusCode.FORBIDDEN)
+                .send(
+                    util.fail(
+                        statusCode.FORBIDDEN,
+                        responseMessage.ACCESS_DENIED,
+                    ),
+                );
+        }
+
+        const postImagePath = post_image.path;
         const putData = {
             title,
             content,

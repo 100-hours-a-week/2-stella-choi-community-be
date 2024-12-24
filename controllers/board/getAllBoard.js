@@ -73,6 +73,7 @@ const getAllBoard = async (req, res) => {
         );
     } finally {
         await connection.release();
+        logPoolStatus();
     }
 };
 
