@@ -5,7 +5,7 @@ const util = require('../../libs/util');
 const pool = require('../../models/db');
 
 const patchUser = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { userId } = req;
     const { nickname } = req.body;
     const profile_image = req.file;
@@ -21,6 +21,7 @@ const patchUser = async (req, res) => {
             );
     }
     try {
+        connection = await pool.getConnection();
         if (nickname) {
             if (!util.validateNickname(nickname)) {
                 return res

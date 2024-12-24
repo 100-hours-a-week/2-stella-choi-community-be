@@ -6,7 +6,7 @@ const util = require('../../libs/util');
 const pool = require('../../models/db');
 
 const postUser = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { email, password, password_check, nickname } = req.body;
     const profile_image = req.file;
 
@@ -50,33 +50,33 @@ const postUser = async (req, res) => {
             );
     }
 
-    // ACTION: DUPLICATE_EMAIL
-    if (await userDB.findUserByEmail(connection, email)) {
-        return res
-            .status(statusCode.BAD_REQUEST)
-            .send(
-                util.fail(
-                    statusCode.BAD_REQUEST,
-                    responseMessage.DUPLICATE_EMAIL,
-                ),
-            );
-    }
-
-    // ACTION: DUPLICATE_NICKNAME
-    if (await userDB.findUserByNickname(connection, nickname)) {
-        return res
-            .status(statusCode.BAD_REQUEST)
-            .send(
-                util.fail(
-                    statusCode.BAD_REQUEST,
-                    responseMessage.DUPLICATE_NICKNAME,
-                ),
-            );
-    }
-
-    const profileImagePath = profile_image.path;
-
     try {
+        connection = await pool.getConnection();
+        // ACTION: DUPLICATE_EMAIL
+        if (await userDB.findUserByEmail(connection, email)) {
+            return res
+                .status(statusCode.BAD_REQUEST)
+                .send(
+                    util.fail(
+                        statusCode.BAD_REQUEST,
+                        responseMessage.DUPLICATE_EMAIL,
+                    ),
+                );
+        }
+
+        // ACTION: DUPLICATE_NICKNAME
+        if (await userDB.findUserByNickname(connection, nickname)) {
+            return res
+                .status(statusCode.BAD_REQUEST)
+                .send(
+                    util.fail(
+                        statusCode.BAD_REQUEST,
+                        responseMessage.DUPLICATE_NICKNAME,
+                    ),
+                );
+        }
+
+        const profileImagePath = profile_image.path;
         const salt = 10;
         const hashedPassword = await bcrypt.hash(password, salt);
 

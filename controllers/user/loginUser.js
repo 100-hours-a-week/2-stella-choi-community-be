@@ -6,7 +6,7 @@ const util = require('../../libs/util');
 const pool = require('../../models/db');
 
 const loginUser = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { email, password } = req.body;
 
     // ACTION: MISSING_FIELD
@@ -35,6 +35,7 @@ const loginUser = async (req, res) => {
 
     // ACTION: NOT_AUTHORIZED , NOT_FOUND_USER
     try {
+        connection = await pool.getConnection();
         const user = await userDB.findUser(connection, email);
         if (user) {
             const isPasswordMatch = await bcrypt.compare(

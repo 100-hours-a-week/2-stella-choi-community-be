@@ -6,7 +6,7 @@ const util = require('../../libs/util');
 const pool = require('../../models/db');
 
 const patchUserPassword = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { userId } = req;
     const { password, password_check } = req.body;
     if (!password || !password_check) {
@@ -42,20 +42,21 @@ const patchUserPassword = async (req, res) => {
             );
     }
 
-    const user = await userDB.findUserBySession(connection, userId);
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
-    if (isPasswordMatch) {
-        return res
-            .status(statusCode.BAD_REQUEST)
-            .send(
-                util.fail(
-                    statusCode.BAD_REQUEST,
-                    responseMessage.SAME_BEFORE_PASSWORD,
-                ),
-            );
-    }
-
     try {
+        connection = await pool.getConnection();
+        const user = await userDB.findUserBySession(connection, userId);
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+        if (isPasswordMatch) {
+            return res
+                .status(statusCode.BAD_REQUEST)
+                .send(
+                    util.fail(
+                        statusCode.BAD_REQUEST,
+                        responseMessage.SAME_BEFORE_PASSWORD,
+                    ),
+                );
+        }
+
         const salt = 10;
         const hashedPassword = await bcrypt.hash(password, salt);
         user.password = hashedPassword;

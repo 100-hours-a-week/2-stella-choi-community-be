@@ -5,7 +5,7 @@ const util = require('../../libs/util');
 const pool = require('../../models/db');
 
 const postComment = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { userId } = req;
     const { board_id, content } = req.body;
 
@@ -34,13 +34,14 @@ const postComment = async (req, res) => {
     }
 
     try {
+        connection = await pool.getConnection();
         const commentData = {
             comment_data: content,
             post_id: boardNumId,
             comment_writer_id: userId,
         };
         const commentId = await commentDB.addComment(connection, commentData);
-        console.log(commentId);
+
         return res
             .status(statusCode.CREATED)
             .send(

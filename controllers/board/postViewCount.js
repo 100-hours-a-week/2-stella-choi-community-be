@@ -5,7 +5,7 @@ const util = require('../../libs/util');
 const pool = require('../../models/db');
 
 const postViewCount = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { boardId } = req.params;
 
     if (!boardId) {
@@ -20,6 +20,7 @@ const postViewCount = async (req, res) => {
     }
 
     try {
+        connection = await pool.getConnection();
         const result = await boardDB.incrementViewCount(
             connection,
             Number(boardId),

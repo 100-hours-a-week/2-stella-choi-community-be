@@ -5,9 +5,10 @@ const util = require('../../libs/util');
 const pool = require('../../models/db');
 
 const deleteUser = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { userId } = req;
     try {
+        connection = await pool.getConnection();
         const result = await userDB.deleteUserBySession(connection, userId);
 
         if (result) {

@@ -5,10 +5,11 @@ const util = require('../../libs/util');
 const pool = require('../../models/db');
 
 const getUser = async (req, res) => {
-    const connection = await pool.getConnection();
+    let connection;
     const { userId } = req;
 
     try {
+        connection = await pool.getConnection();
         if (userId) {
             const user = await userDB.findUserBySession(connection, userId);
             const response = {
