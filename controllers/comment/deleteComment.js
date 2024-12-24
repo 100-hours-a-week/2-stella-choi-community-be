@@ -22,22 +22,26 @@ const deleteComment = async (req, res) => {
             );
     }
 
-    const commentOwner = await commentDB.getCommentOwnerId(
-        connection,
-        commentNumId,
-    );
-
-    // ACTION: ACCESS_DENIED
-    if (commentOwner !== userId) {
-        return res
-            .status(statusCode.FORBIDDEN)
-            .send(
-                util.fail(statusCode.FORBIDDEN, responseMessage.ACCESS_DENIED),
-            );
-    }
-
     try {
         connection = await pool.getConnection();
+
+        const commentOwner = await commentDB.getCommentOwnerId(
+            connection,
+            commentNumId,
+        );
+
+        // ACTION: ACCESS_DENIED
+        if (commentOwner !== userId) {
+            return res
+                .status(statusCode.FORBIDDEN)
+                .send(
+                    util.fail(
+                        statusCode.FORBIDDEN,
+                        responseMessage.ACCESS_DENIED,
+                    ),
+                );
+        }
+
         const result = await commentDB.deleteComment(connection, commentNumId);
         if (result) {
             return res
