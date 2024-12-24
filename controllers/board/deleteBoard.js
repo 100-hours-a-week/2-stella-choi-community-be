@@ -22,17 +22,23 @@ const deleteBoard = async (req, res) => {
             );
     }
 
-    // ACTION: ACCESS_DENIED
-    const boardOwner = await boardDB.getBoardOwnerId(connection, boardNumId);
-    if (boardOwner !== userId) {
-        return res
-            .status(statusCode.FORBIDDEN)
-            .send(
-                util.fail(statusCode.FORBIDDEN, responseMessage.ACCESS_DENIED),
-            );
-    }
     try {
         connection = await pool.getConnection();
+        // ACTION: ACCESS_DENIED
+        const boardOwner = await boardDB.getBoardOwnerId(
+            connection,
+            boardNumId,
+        );
+        if (boardOwner !== userId) {
+            return res
+                .status(statusCode.FORBIDDEN)
+                .send(
+                    util.fail(
+                        statusCode.FORBIDDEN,
+                        responseMessage.ACCESS_DENIED,
+                    ),
+                );
+        }
         const result = await boardDB.deleteBoard(connection, boardNumId);
         if (result) {
             return res
