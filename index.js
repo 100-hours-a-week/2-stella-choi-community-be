@@ -5,9 +5,12 @@ const app = express();
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const morgan = require('morgan');
 
 const PORT = 8080;
 require('dotenv').config();
+
+const logger = require('./utils/winstonLogger');
 
 const allowedOrigins = ['http://localhost:3000', 'http://3.34.50.126:3000']; // 허용할 호스트
 app.use(
@@ -31,6 +34,14 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: { secure: false }, // HTTPS 사용 시 true로 설정
+    }),
+);
+
+app.use(
+    morgan('combined', {
+        stream: {
+            write: message => logger.info(message.trim()),
+        },
     }),
 );
 

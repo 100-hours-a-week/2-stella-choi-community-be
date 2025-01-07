@@ -8,9 +8,11 @@ const deleteBoard = require('../../controllers/board/deleteBoard');
 const postViewCount = require('../../controllers/board/postViewCount');
 const { authMiddleware } = require('../../middlewares/auth');
 const upload = require('../../middlewares/multer');
+const morganBoardAPILogger = require('../../utils/morganLogger/morganBoardAPILogger');
 
 const router = express.Router();
 
+router.use(morganBoardAPILogger);
 router.get('/', authMiddleware, getAllBoard);
 router.post('/', authMiddleware, upload.single('post_image'), postBoard);
 router.get('/:boardId', authMiddleware, getBoard);
