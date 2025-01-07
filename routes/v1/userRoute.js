@@ -9,9 +9,11 @@ const deleteUser = require('../../controllers/user/deleteUser');
 const { authMiddleware } = require('../../middlewares/auth');
 const upload = require('../../middlewares/multer');
 const logoutUser = require('../../controllers/user/logoutUser');
+const morganUserAPILogger = require('../../utils/morganLogger/morganUserAPILogger');
 
 const router = express.Router();
 
+router.use(morganUserAPILogger);
 router.post('/', upload.single('profile_image'), postUser);
 router.get('/', authMiddleware, getUser);
 router.patch('/', authMiddleware, upload.single('profile_image'), patchUser);
