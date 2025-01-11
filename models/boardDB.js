@@ -1,3 +1,5 @@
+const logger = require('../utils/winstonLogger');
+
 const getAllBoard = async (connection, limit, offset) => {
     try {
         const query = `
@@ -28,7 +30,7 @@ const getAllBoard = async (connection, limit, offset) => {
 
         return JSON.parse(serializedRows);
     } catch (error) {
-        console.log('Error getting post: ', error);
+        logger.error('Error getting all post: ', error);
         throw error;
     }
 };
@@ -53,7 +55,7 @@ const addBoard = async (connection, newBoard) => {
             post_id: JSON.parse(serializedRows).insertId,
         };
     } catch (error) {
-        console.log('Error adding post: ', error);
+        logger.error('Error adding post: ', error);
         throw error;
     }
 };
@@ -103,7 +105,7 @@ const getBoardById = async (connection, boardId) => {
             comments,
         };
     } catch (error) {
-        console.log('Error getting post: ', error);
+        logger.error('Error getting post: ', error);
         throw error;
     }
 };
@@ -122,7 +124,7 @@ const incrementViewCount = async (connection, boardId) => {
         }
         return false;
     } catch (error) {
-        console.log('Error incrementing view count: ', error);
+        logger.error('Error incrementing view count: ', error);
         throw error;
     }
 };
@@ -138,7 +140,8 @@ const getBoardOwnerId = async (connection, boardId) => {
 
         return rows[0].user_id;
     } catch (error) {
-        console.log('Error getting board ownerId: ', error);
+        logger.error('Error getting board ownerId: ', error);
+        throw error;
     }
 };
 
@@ -162,7 +165,7 @@ const editBoard = async (connection, boardId, newBoard) => {
         const result = await connection.query(query, [...values, boardId]);
         return result;
     } catch (error) {
-        console.log('Error editing board: ', error);
+        logger.error('Error editing board: ', error);
         throw error;
     }
 };
@@ -180,7 +183,7 @@ const deleteBoard = async (connection, boardId) => {
         }
         return false;
     } catch (error) {
-        console.log('Error deleting board: ', error);
+        logger.error('Error deleting board: ', error);
         throw error;
     }
 };

@@ -3,6 +3,7 @@ const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
 const pool = require('../../models/db');
+const logger = require('../../utils/winstonLogger');
 
 const deleteComment = async (req, res) => {
     let connection;
@@ -62,7 +63,7 @@ const deleteComment = async (req, res) => {
                 ),
             );
     } catch (error) {
-        console.log(error);
+        logger.error(error);
         return res
             .status(statusCode.INTERNAL_SERVER_ERROR)
             .send(

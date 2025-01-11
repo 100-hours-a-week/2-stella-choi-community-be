@@ -1,3 +1,5 @@
+const logger = require('../utils/winstonLogger');
+
 const addUser = async (connection, newUser) => {
     try {
         const columns = Object.keys(newUser).join(', ');
@@ -13,7 +15,7 @@ const addUser = async (connection, newUser) => {
         const result = await connection.query(query, values);
         return result;
     } catch (error) {
-        console.log('Error inserting user: ', error);
+        logger.error('Error inserting user: ', error);
         throw error;
     }
 };
@@ -28,7 +30,8 @@ const findUserByEmail = async (connection, email) => {
         const [result] = await connection.query(query, [email]);
         return result.count > 0;
     } catch (error) {
-        console.log('Error finding user: ', error);
+        logger.error('Error finding user: ', error);
+        throw error;
     }
 };
 
@@ -42,7 +45,8 @@ const findUserByNickname = async (connection, nickname) => {
         const [result] = await connection.query(query, [nickname]);
         return result.count > 0;
     } catch (error) {
-        console.log('Error finding user: ', error);
+        logger.error('Error finding user: ', error);
+        throw error;
     }
 };
 
@@ -56,7 +60,8 @@ const findUser = async (connection, email) => {
         const [result] = await connection.query(query, [email]);
         return result || null;
     } catch (error) {
-        console.log('Error finding user: ', error);
+        logger.error('Error finding user: ', error);
+        throw error;
     }
 };
 
@@ -70,7 +75,8 @@ const findUserBySession = async (connection, userID) => {
         const [result] = await connection.query(query, [userID]);
         return result;
     } catch (error) {
-        console.log('Error finding user: ', error);
+        logger.error('Error finding user: ', error);
+        throw error;
     }
 };
 
@@ -96,7 +102,8 @@ const updateUser = async (connection, updatedUser) => {
         const result = await connection.query(query, [...values, id]);
         return result;
     } catch (error) {
-        console.log('Error updating user: ', error);
+        logger.error('Error updating user: ', error);
+        throw error;
     }
 };
 
@@ -113,7 +120,8 @@ const deleteUserBySession = async (connection, userID) => {
         }
         return false;
     } catch (error) {
-        console.log('Error deleting user: ', error);
+        logger.error('Error deleting user: ', error);
+        throw error;
     }
 };
 

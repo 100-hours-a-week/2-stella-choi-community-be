@@ -1,6 +1,7 @@
 const statusCode = require('../../constants/statusCode');
 const responseMessage = require('../../constants/responseMessage');
 const util = require('../../libs/util');
+const logger = require('../../utils/winstonLogger');
 
 const logoutUser = async (req, res) => {
     try {
@@ -25,6 +26,7 @@ const logoutUser = async (req, res) => {
                 );
         });
     } catch (error) {
+        logger.error(error);
         res.status(statusCode.INTERNAL_SERVER_ERROR).send(
             util.fail(
                 statusCode.INTERNAL_SERVER_ERROR,

@@ -1,3 +1,5 @@
+const logger = require('../utils/winstonLogger');
+
 const addLike = async (connection, newLike) => {
     try {
         const columns = Object.keys(newLike).join(', ');
@@ -18,7 +20,7 @@ const addLike = async (connection, newLike) => {
             like_id: JSON.parse(serializedRows).insertId,
         };
     } catch (error) {
-        console.log('Error adding like: ', error);
+        logger.error('Error adding like: ', error);
         throw error;
     }
 };
@@ -37,7 +39,8 @@ const findLike = async (connection, userId, boardId) => {
             isLiked: Boolean(rows.isLiked),
         };
     } catch (error) {
-        console.log('Error finding like: ', error);
+        logger.error('Error finding like: ', error);
+        throw error;
     }
 };
 
@@ -54,7 +57,8 @@ const deleteLike = async (connection, userId, boardId) => {
         }
         return false;
     } catch (error) {
-        console.log('Error deleting like: ', error);
+        logger.error('Error deleting like: ', error);
+        throw error;
     }
 };
 

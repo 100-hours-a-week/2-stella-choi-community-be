@@ -32,29 +32,11 @@ const format = winston.format.combine(
 const LOGGER = winston.createLogger({
     format,
     transports: [
-        //* LOGGER.info
-        new winstonDaily({
-            level: 'info',
-            datePattern: 'YYYY-MM-DD',
-            filename: path.join(`${logDir}/log`, `%DATE%.log`),
-            zippedArchive: true, // 로그 삭제되기 전 압축되어 저장  //! cron/yml 통해 압축
-            handleExceptions: true,
-            maxFiles: '7d', // 하루가 지나면 로그파일이 새로 생성되고 이전 파일은 삭제됨
-        }),
-
         //* LOGGER.error
         new winstonDaily({
             level: 'error',
             datePattern: 'YYYY-MM-DD',
             filename: path.join(`${logDir}/error`, `%DATE%.error.log`),
-            zippedArchive: true,
-            maxFiles: '7d',
-        }),
-
-        new winstonDaily({
-            level: 'http',
-            datePattern: 'YYYY-MM-DD',
-            filename: path.join(`${logDir}/http`, `%DATE%.http.log`),
             zippedArchive: true,
             maxFiles: '7d',
         }),
@@ -68,7 +50,7 @@ const LOGGER = winston.createLogger({
         new winstonDaily({
             level: 'error',
             datePattern: 'YYYY-MM-DD',
-            filename: path.join(`${logDir}/error`, `%DATE%.exception.log`),
+            filename: path.join(`${logDir}/exception`, `%DATE%.exception.log`),
             zippedArchive: true,
             maxFiles: '7d',
         }),
