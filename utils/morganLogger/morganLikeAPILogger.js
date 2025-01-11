@@ -11,12 +11,6 @@ if (!fs.existsSync(logDir)) {
     fs.mkdirSync(logDir, { recursive: true });
 }
 
-// 로그 파일 스트림 생성
-const accessLogStream = fs.createWriteStream(
-    path.join(logDir, `${moment().format('YYYY-MM-DD')}.log`),
-    { flags: 'a' },
-);
-
 // Custom Morgan Tokens
 morgan.token('timestamp', () => moment().format('YYYY-MM-DD HH:mm:ss'));
 morgan.token('status', (_, res) => res.statusCode.toString());
@@ -31,22 +25,29 @@ morgan.token('ip', req => req.ip || 'Unknown IP');
 morgan.token('req-body', req => JSON.stringify(req.body) || '{}');
 
 // JSON 형식으로 로그 생성
-const jsonMorganLogger = morgan(
-    (tokens, req, res) => {
-        const logData = {
-            timestamp: tokens.timestamp(req, res),
-            method: tokens.method(req, res),
-            url: tokens.url(req, res),
-            status: tokens.status(req, res),
-            responseTime: tokens['response-time'](req, res),
-            user: tokens.user(req, res),
-            ip: tokens.ip(req, res),
-            requestBody: JSON.parse(tokens['req-body'](req, res)),
-        };
+const jsonMorganLogger = morgan((tokens, req, res) => {
+    const logFileName = `${moment().format('YYYY-MM-DD')}.log`;
+    const logFilePath = path.join(logDir, logFileName);
 
-        return JSON.stringify(logData); // JSON 형식으로 반환
-    },
-    { stream: accessLogStream },
-);
+    const logData = {
+        timestamp: tokens.timestamp(req, res),
+        method: tokens.method(req, res),
+        url: tokens.url(req, res),
+        status: tokens.status(req, res),
+        responseTime: tokens['response-time'](req, res),
+        user: tokens.user(req, res),
+        ip: tokens.ip(req, res),
+        requestBody: JSON.parse(tokens['req-body'](req, res)),
+    };
+
+    fs.appendFile(logFilePath, `${JSON.stringify(logData)}\n`, err => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log(logData);
+        }
+    });
+    return null;
+});
 
 module.exports = jsonMorganLogger;

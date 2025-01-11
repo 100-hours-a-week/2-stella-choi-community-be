@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const responseTime = require('response-time');
 
 const app = express();
 const session = require('express-session');
@@ -35,6 +36,12 @@ app.use(
         saveUninitialized: false,
         cookie: { secure: false }, // HTTPS 사용 시 true로 설정
     }),
+);
+
+app.use(responseTime());
+morgan.token(
+    'response-time',
+    (_, res) => res.getHeader('X-Response-Time') || '0ms',
 );
 
 app.use(

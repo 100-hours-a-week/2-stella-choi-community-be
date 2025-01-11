@@ -1,3 +1,5 @@
+const logger = require('../utils/winstonLogger');
+
 const addComment = async (connection, newComment) => {
     try {
         const columns = Object.keys(newComment).join(', ');
@@ -18,7 +20,7 @@ const addComment = async (connection, newComment) => {
             comment_id: JSON.parse(serializedRows).insertId,
         };
     } catch (error) {
-        console.log('Error adding comment: ', error);
+        logger.error('Error adding comment: ', error);
         throw error;
     }
 };
@@ -41,7 +43,8 @@ const editComment = async (connection, commentId, newComment) => {
         }
         return false;
     } catch (error) {
-        console.log('Error updating comment: ', error);
+        logger.error('Error updating comment: ', error);
+        throw error;
     }
 };
 
@@ -56,7 +59,8 @@ const getCommentOwnerId = async (connection, commentId) => {
 
         return rows[0].comment_writer_id;
     } catch (error) {
-        console.log('Error getting board ownerId: ', error);
+        logger.error('Error getting board ownerId: ', error);
+        throw error;
     }
 };
 
@@ -73,7 +77,8 @@ const deleteComment = async (connection, commentId) => {
         }
         return false;
     } catch (error) {
-        console.log('Error deleting comment: ', error);
+        logger.error('Error deleting comment: ', error);
+        throw error;
     }
 };
 
