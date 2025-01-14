@@ -1,18 +1,26 @@
 const express = require('express');
 const path = require('path');
-const responseTime = require('response-time');
 
 const app = express();
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const morgan = require('morgan');
-
-const PORT = 8080;
-require('dotenv').config();
-
+const responseTime = require('response-time');
+const dotenv = require('dotenv');
 const logger = require('./utils/winstonLogger');
 
+const PORT = 8080;
+
+// 운영 환경 변수 정의
+
+if (process.env.NODE_ENV === 'production') {
+    dotenv.config({ path: '.env.production' });
+} else {
+    dotenv.config({ path: '.env.local' });
+}
+
+// Cors 옵션 정의
 const allowedOrigins = ['http://localhost:3000', 'http://3.34.50.126:3000']; // 허용할 호스트
 app.use(
     cors({
