@@ -62,11 +62,13 @@ jobs:
 
           if [ "${{ github.ref_name }}" == "main" ]; then
             ssh -o StrictHostKeyChecking=no -i key.pem $USER@$HOST "docker rm -f community-be || true"
+            ssh -o StrictHostKeyChecking=no -i key.pem $USER@$HOST "docker image prune -f || true"
             ssh -o StrictHostKeyChecking=no -i key.pem $USER@$HOST "docker login ghcr.io -u choiyoorim -p ${{ secrets.GHCR_PAT }}"
             ssh -o StrictHostKeyChecking=no -i key.pem $USER@$HOST "docker pull ghcr.io/choiyoorim/community-be:latest"
             ssh -o StrictHostKeyChecking=no -i key.pem $USER@$HOST "docker run -d --name community-be -p 8080:8080 ghcr.io/choiyoorim/community-be:latest"
           else
             ssh -o StrictHostKeyChecking=no -i key.pem $USER@$HOST "docker rm -f community-be-develop || true"
+            ssh -o StrictHostKeyChecking=no -i key.pem $USER@$HOST "docker image prune -f || true"
             ssh -o StrictHostKeyChecking=no -i key.pem $USER@$HOST "docker login ghcr.io -u choiyoorim -p ${{ secrets.GHCR_PAT }}"
             ssh -o StrictHostKeyChecking=no -i key.pem $USER@$HOST "docker pull ghcr.io/choiyoorim/community-be:develop"
             ssh -o StrictHostKeyChecking=no -i key.pem $USER@$HOST "docker run -d --name community-be-develop -p 8081:8080 ghcr.io/choiyoorim/community-be:develop"
