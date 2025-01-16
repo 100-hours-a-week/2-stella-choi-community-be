@@ -16,7 +16,9 @@ const PORT = 8080;
 
 if (process.env.NODE_ENV === 'production') {
     dotenv.config({ path: '.env.production' });
-} else {
+} else if (process.env.NODE_ENV === 'dev') {
+    dotenv.config({ path: '.env.develop' });
+} else if (process.env.NODE_ENV === 'local') {
     dotenv.config({ path: '.env.local' });
 }
 

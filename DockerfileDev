@@ -9,7 +9,7 @@ RUN npm install
 COPY . .
 
 # 환경 변수 설정 및 포트 노출
-ENV NODE_ENV=local
+ENV NODE_ENV=dev
 ENV PORT=8080
 EXPOSE $PORT
 

@@ -28,7 +28,7 @@ jobs:
 
       - name: Create .env.develop
         if: github.ref_name == 'develop'
-        run: echo "${{ secrets.DEV_ENV }}" > .env.local
+        run: echo "${{ secrets.DEV_ENV }}" > .env.develop
 
       - name: Build and push Docker image
         run: |
@@ -42,7 +42,7 @@ jobs:
             docker buildx build \
               --platform linux/amd64 \
               --push \
-              -f DockerfileLocal \
+              -f DockerfileDev \
               -t ghcr.io/choiyoorim/community-be:develop .
           fi
 
